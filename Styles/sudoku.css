@@ -1,0 +1,319 @@
+:root{
+  --sizeSudoku:100vw;
+  --sizeCell:calc(var(--sizeSudoku)/9);
+  --widthColumn:calc(var(--sizeSudoku)/3);
+  --colorText:white;
+  --fontSize:5vw;
+  --fontSizeSudoku:8vw;
+}
+
+body{
+  margin: 1px;
+}
+
+nav {
+
+  position: relative;
+  /* top: 0;
+  z-index: 4;
+  margin: 0; */
+  box-shadow: none;
+
+  width: 100vw;
+  
+}
+
+nav div {
+  /* padding: 20px 20% 20px 20%; */
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-between;
+  /* gap: 25px; */
+
+}
+
+#background-video {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: -1;
+}
+
+
+nav a {
+  display: block;
+  min-width: 150px;
+  text-align: center;
+  
+  text-decoration: none;
+  /* border-top: 1px solid gold; */
+  color: white;
+  font-size: var(--fontSize);
+}
+
+
+.sudoku {
+    width: var(--sizeSudoku);
+    
+    height: var(--sizeSudoku);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* grid-template-columns: 25vh 25vh 25vh; */
+
+    grid-template-rows: repeat(3,var(--widthColumn));
+    /* border: 1px solid blue; */
+
+}
+
+.cel {
+    /* width: calc(calc(25vh/3) - 8px);
+    height: calc(25vh/3) - 2px); */
+    width: var(--sizeCell);
+    height: var(--sizeCell);
+    gap: 0;
+    margin: 0;
+    /* display: none; */
+    box-sizing: border-box;
+    text-align: center;
+    font-size: var(--fontSizeSudoku);
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+.cel:hover{
+    background-color: rgb(221, 246, 255);
+}
+
+.block {
+    display: flex;
+    flex-wrap: wrap;
+    border: 2px solid red;
+    width: 100%;
+    height: 100%;
+    padding: auto;
+    
+   
+}
+
+.button-container {
+   display: block;
+    /* margin-top: 5px; */
+    margin-left: auto;
+    margin-right: auto;
+    width: calc(var(--sizeSudoku)*2/3);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    /* border: 1px solid blue; */
+}
+
+.buttonValue {
+    width: var(--sizeCell);
+    height: var(--sizeCell);
+    border-radius: 1vh;
+    font-size: var(--fontSizeSudoku);
+    cursor: pointer;
+    background-color: rgb(230, 230, 230);
+    
+}
+
+.buttonValue:focus {
+    box-shadow: 3px 3px 3px gray;
+}
+
+.gagne {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 2rem;
+    background: linear-gradient(to right, rgba(0,0,255,0.5) 0%, rgba(0,255,255,0.5) 10%, rgba(0,255,0,0.5) 45%,
+     rgba(255,255,0,0.5) 50%, rgba(255,165,0,0.5) 70%, rgba(255,0,0,0.5) 90%), 
+    linear-gradient(rgb(150, 225, 255) 52%, rgb(9, 10, 10) 60%, rgb(252, 209, 156) 61%);
+
+    background-clip: text;
+  /*add this line, it defines how far the background should extend within an element, here we set it to text */
+  
+  -webkit-background-clip: text;
+  /* add this line, for browsers compatibility */
+
+  -webkit-text-fill-color: transparent;
+  /* specifies the fill color of text characters. We use transparent to use the background value as our text fill */
+
+  animation: wave 1500ms ease alternate infinite;
+  /* add this line */
+  transition: all 0.5s ease;
+  /* add this line */
+}
+
+@keyframes wave {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 50vw 5vh;
+    }
+  }
+
+  #temps, #temps2{
+    /* font-family: 'Segment7Standard'; */
+    display: block;
+    font-family: 'Cabin Sketch', cursive;
+    font-size: calc(var(--fontSizeSudoku) * 0.8);
+    color: gold;
+    text-align: center;
+    
+
+  }
+
+  #temps{
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    /* text-align: center; */
+  }
+
+  #temps2{
+    display: block;
+    margin-top: -0.8rem;
+    margin-bottom: 0.8rem;
+    margin-left: auto;
+    margin-right: auto;
+    /* text-align: center; */
+  }
+
+  form {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--sizeSudoku);
+    
+    
+  }
+
+ fieldset {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    max-width: var(--sizeSudoku);
+    margin: 0;
+ }
+
+  label {
+    font-size: var(--fontSize);
+    color: var(--colorText);
+  }
+
+  legend {
+    font-size: var(--fontSize);
+    font-weight: bold;
+    color: var(--colorText);
+  }
+  .nouvellePartie {
+    display: block;
+    font-size: var(--fontSize);
+    border-radius: 15px;
+    height: calc(2 * var(--fontSize));
+    cursor: pointer;
+    margin: 10px auto 0 auto;
+  }
+
+  .nouvellePartie:active {
+    box-shadow: 3px 3px 3px gray;
+  }
+
+  .niveau {
+    min-width: 45%;
+    box-sizing: border-box;
+  }
+
+
+  @media screen and (min-width:600px) {
+    :root{
+      --sizeSudoku:85vw;
+      --sizeCell:calc(var(--sizeSudoku)/9);
+      --widthColumn:calc(var(--sizeSudoku)/3);
+      --colorText:white;
+      --fontSize:2.5vh;
+      --fontSizeSudoku:4vh;
+    }
+
+    main {
+
+      margin-top: 2vh;
+    }
+  }
+
+  @media screen and (min-width:800px) {
+    :root{
+      --sizeSudoku:70vw;
+      --sizeCell:calc(var(--sizeSudoku)/9);
+      --widthColumn:calc(var(--sizeSudoku)/3);
+      --colorText:white;
+      --fontSize:2.5vh;
+      --fontSizeSudoku:4vh;
+    }
+
+    main {
+
+      margin-top: 2vh;
+    }
+
+    nav div {
+      padding: 20px 2vw 20px 2vw;
+      /* display: flex;
+      margin-left: auto;
+      margin-right: auto;
+      justify-content: space-between; */
+      gap: 15vw;
+    
+    }
+
+  }
+
+  @media screen and (min-width:1200px) {
+    :root{
+      --sizeSudoku:60vh;
+      --sizeCell:calc(var(--sizeSudoku)/9);
+      --widthColumn:calc(var(--sizeSudoku)/3);
+      --colorText:white;
+      --fontSize:3vh;
+      --fontSizeSudoku:4vh;
+    }
+
+    main {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      gap: 5vw;
+      margin-top: 2vh;
+    }
+
+    #temps{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      /* text-align: center; */
+    }
+  
+    #temps2{
+      display: none;
+      margin-left: auto;
+      margin-right: auto;
+      /* text-align: center; */
+    }
+  }

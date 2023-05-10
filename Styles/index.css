@@ -1,0 +1,318 @@
+
+
+
+/* main section {
+    /* background:  */
+        /* linear-gradient(0deg, rgba(100,100,200,0.5),black,black,rgba(100,100,200,0.5)),
+        linear-gradient(90deg,rgba(100,100,200,0.5),black,black,rgba(100,100,200,0.5)); */
+/* 
+        repeating-linear-gradient(190deg, rgba(255, 0, 0, 0.5) 40px,
+        rgba(255, 153, 0, 0.5) 80px, rgba(255, 255, 0, 0.5) 120px,
+        rgba(0, 255, 0, 0.5) 160px, rgba(0, 0, 255, 0.5) 200px,
+        rgba(75, 0, 130, 0.5) 240px, rgba(238, 130, 238, 0.5) 280px,
+        rgba(255, 0, 0, 0.5) 300px),
+      repeating-linear-gradient(-190deg, rgba(255, 0, 0, 0.5) 30px,
+        rgba(255, 153, 0, 0.5) 60px, rgba(255, 255, 0, 0.5) 90px,
+        rgba(0, 255, 0, 0.5) 120px, rgba(0, 0, 255, 0.5) 150px,
+        rgba(75, 0, 130, 0.5) 180px, rgba(238, 130, 238, 0.5) 210px,
+        rgba(255, 0, 0, 0.5) 230px),
+      repeating-linear-gradient(23deg, red 50px, orange 100px,
+        yellow 150px, green 200px, blue 250px,
+        indigo 300px, violet 350px, red 370px);
+}  */
+
+h2 {
+    color: rgb(50,50,150);
+    font-size: 1.5em;
+    margin-bottom: 170px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.resume {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5%;
+}
+
+.resume a {
+    text-decoration: none;
+    color:aquamarine;
+}
+
+.resume a:hover {
+    color:gold;
+}
+
+p {
+    text-align: justify;
+    /* margin: 30px 200px 30px 200px; */
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-bottom: 1em;
+}
+
+.textResume {
+/* border: 1px solid blue; */
+width: 45%;
+}
+
+.photoMoi{
+    position: relative;
+    width: 30%;
+    /* min-width: 600px; */
+    height: 30vw;
+    /* margin-left: auto;
+    margin-right: auto; */
+    /* margin-top: 100px; */
+    /* border: 1px solid white; */
+}
+
+.photoMoi #block1 {
+    position: absolute;
+    overflow:hidden;
+    /* width: 300px;
+    height: 300px; */
+    width: 50%;
+    height: 50%;
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50% ;
+    /* left: 150px;
+    top: 150px; */
+    left: 25%;
+    top: 25%;
+    z-index: 3;
+}
+
+#block1 img {
+    position: absolute;
+    object-fit: contain;
+    /* width: 300px; */
+    width: 100%;
+    height: auto;
+    bottom: 0;
+}
+
+.photoMoi #block2 {
+    position: absolute;
+    overflow:hidden;
+    /* width: 300px;
+    height: 300px; */
+    /* left: 0;
+    top: 150px; */
+     width: 50%;
+    height: 50%;
+    left: 0;
+    top: 25%;
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50% ;
+    /* background-color: rgb(142, 142, 255); */
+    background: 
+    linear-gradient(to left,rgba(236, 216, 191,0.6) 35%, rgba(0,0,255,0.5) 85%),
+    linear-gradient(to top, rgba(255, 0, 0, 0.85) 10%, black 32%, rgba(255, 0, 0, 0.85) 35%);
+    z-index: 2;
+    box-shadow: -20px 0 35px rgba(255,0,0,0.5);
+}
+
+.photoMoi #block3 {
+    position: absolute;
+    height : 0;
+    width : 0;
+    /* border-right : 250px solid transparent;
+    border-bottom : 433px solid white;
+    border-left : 250px solid transparent;
+    left: 50px;
+    top: 30px; */
+    /* border-right : 41.67% solid transparent;
+    border-bottom : 72.17% solid white;
+    border-left : 41.67% solid transparent;
+    left: 8.33%;
+    top: 5%; */
+    z-index: 1;
+}
+
+.photoMoi #block4 {
+    position: absolute;
+    overflow:hidden;
+    /* width: 300px;
+    height: 300px;
+    right: 0;
+    top: 150px; */
+    width: 50%;
+    height: 50%;
+    right: 0;
+    top: 25%;
+    border-radius: 50% 50% 50% 50% / 50% 50% 50% 50% ;
+    /* background-color: rgb(255, 150, 150); */
+    background: 
+    linear-gradient(to right,rgba(236, 216, 191, 0.6) 35%, rgba(255,0,0,0.5) 85%),
+    linear-gradient(to top, rgba(0, 0, 255, 0.8) 10%, black 32%, rgba(0, 0, 255, 0.8) 35%);
+    z-index: 2;
+    box-shadow: 20px 0 35px rgba(0,0,255,0.5);
+}
+
+.photoMoi #block5 {
+    position: absolute;
+    height : 0;
+    width : 0;
+    /* border-right : 250px solid transparent;
+    border-top : 433px solid white;
+    border-left : 250px solid transparent;
+    left: 50px;
+    top: 140px; */
+    /* border-right-style: solid;
+    border-left-style: solid;
+    border-top-style: solid;
+    border-right-color: transparent ;
+    border-left-color: transparent ;
+    border-top-color: white; */
+    
+    left: 8.33%;
+    top: 23.33%;
+    z-index: 1;
+    /* box-shadow: 5px 5px 5px 5px rgba(150,250,150,0.5); */
+}
+
+
+
+
+
+.competencesContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid white;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255,255,255,0.7);
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.logoWCC {
+
+width: 35%;
+height: auto;
+/* border: 1px solid red; */
+}
+
+.logoWCC img {
+    width: 100%;
+}
+
+.competences {
+    width: 55%;
+}
+
+.formation {
+    background-image: url("../Images/equipe.jpg");
+    background-size:cover;
+    height: 800px;
+    padding: 50px;
+}
+
+.formation h3 {
+    text-align: center;
+    border: 2px dotted red;
+    border-radius: 5px;
+    display: block;
+    width: 80%;
+    height: auto;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(255,204,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .formation ul {
+   border: 1px green solid; 
+    
+} */
+
+.formation ul.elementFormation li {
+    display: inline-block;
+    height: 2.5em;
+    color: blue;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    padding: 12px 5px 5px 45px;
+    /* padding-left: 40px; */
+    list-style-type: none ;
+    background-image:  url("../Images/puce.png");
+    background-repeat: no-repeat;
+
+}
+
+.competencesContainer a:hover {
+box-shadow: 10px 10px 15px rgba(100,100,100,0.5);
+}
+
+@media screen and (max-width: 800px) {
+    .competencesContainer {
+        flex-direction: column;
+
+    }
+
+    .competences {
+        width: 100%;
+    }
+
+    .logoWCC {
+        width: 60%;
+    }
+
+    h2 {
+        margin-bottom: 40px;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .resume {
+       flex-direction: column; 
+    }
+
+    .textResume {
+        /* border: 1px solid blue; */
+        width: 80%;
+        margin-bottom: 40px;
+        }
+
+        .photoMoi {
+            width: 60%;
+            height: 60vw;
+        }
+}
+
+@media screen and (max-width: 650px) {
+    .competencesContainer {
+        width: 95%;
+        
+    }
+
+    .formation ul.elementFormation {
+        margin-left: -30px;
+    }
+
+    .formation ul.elementFormation li {
+        
+        width: calc(100% - 50px);
+        font-size: 1em;
+        /* border: 1px solid red; */
+    }
+
+    .formation h1 {
+        font-size: 2em;
+        margin-bottom: 0;
+    }
+
+    .formation h2 {
+        font-size: 1.3em;
+    }
+
+    .formation h3 {
+        font-size: 1.1em;
+    }
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jeu du sudoku</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!--Pour que les @media fonctionnent avec tous les smartphones -->
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/segment7" type="text/css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Manrope&family=Tilt+Prism&display=swap" rel="stylesheet">
+    <link rel="styleSheet" href="Styles/style.css" />
+    <link rel="styleSheet" href="Styles/sudoku.css" />
+    <script type="module" src="./javascript/sudoku.js"></script>
+</head>
+
+<body>
+
+   <nav>
+      <video id="background-video" autoplay loop muted poster="Images/vague2.png"><source src="Videos/vague2.mp4" type="video/mp4"></video>
+          <ul class="nav">
+              <li class="menu"><a href="index.html">Développement web</a></li>
+              <li class="menu"><a href="background.html">Mes expériences</a></li>
+              <li class="menu deroulant">
+                  <a href="mesJeux.html">Mes jeux &ensp;</a>
+                      <ul class="sousMenu">
+                          <li><a href="sudoku.html">Sudoku</a></li>
+                          <li><a href="demineur.html">Démineur</a></li>
+                      </ul>
+              </li>
+              <li class="menu"><a href="contact.php">Contact</a></li>
+          </ul>
+
+  </nav>
+
+  <main>
+      <section>
+         <section class="sudoku">
+            <div class="block" id="block-l1c1">
+               <button class="cel" id="cel-l1c1" name="cel-l1c1"></button>
+               <button class="cel" id="cel-l1c2" name="cel-l1c2"></button>
+               <button class="cel" id="cel-l1c3" name="cel-l1c3"></button>
+               <button class="cel" id="cel-l2c1" name="cel-l2c1"></button>
+               <button class="cel" id="cel-l2c2" name="cel-l2c2"></button>
+               <button class="cel" id="cel-l2c3" name="cel-l2c3"></button>
+               <button class="cel" id="cel-l3c1" name="cel-l3c1"></button>
+               <button class="cel" id="cel-l3c2" name="cel-l3c2"></button>
+               <button class="cel" id="cel-l3c3" name="cel-l3c3"></button>
+            </div>
+
+            <div class="block" id="block-l1c2">
+                  <button class="cel" id="cel-l1c4" name="cel-l1c4"></button>
+                  <button class="cel" id="cel-l1c5" name="cel-l1c5"></button>
+                  <button class="cel" id="cel-l1c6" name="cel-l1c6"></button>
+                  <button class="cel" id="cel-l2c4" name="cel-l2c4"></button>
+                  <button class="cel" id="cel-l2c5" name="cel-l2c5"></button>
+                  <button class="cel" id="cel-l2c6" name="cel-l2c6"></button>
+                  <button class="cel" id="cel-l3c4" name="cel-l3c4"></button>
+                  <button class="cel" id="cel-l3c5" name="cel-l3c5"></button>
+                  <button class="cel" id="cel-l3c6" name="cel-l3c6"></button>
+               </div>
+
+               <div class="block" id="block-l1c3">
+                  <button class="cel" id="cel-l1c7" name="cel-l1c7"></button>
+                  <button class="cel" id="cel-l1c8" name="cel-l1c8"></button>
+                  <button class="cel" id="cel-l1c9" name="cel-l1c9"></button>
+                  <button class="cel" id="cel-l2c7" name="cel-l2c7"></button>
+                  <button class="cel" id="cel-l2c8" name="cel-l2c8"></button>
+                  <button class="cel" id="cel-l2c9" name="cel-l2c9"></button>
+                  <button class="cel" id="cel-l3c7" name="cel-l3c7"></button>
+                  <button class="cel" id="cel-l3c8" name="cel-l3c8"></button>
+                  <button class="cel" id="cel-l3c9" name="cel-l3c9"></button>
+               </div>
+
+
+               <div class="block" id="block-l2c1">
+                  <button class="cel" id="cel-l4c1" name="cel-l4c1"></button>
+                  <button class="cel" id="cel-l4c2" name="cel-l4c2"></button>
+                  <button class="cel" id="cel-l4c3" name="cel-l4c3"></button>
+                  <button class="cel" id="cel-l5c1" name="cel-l5c1"></button>
+                  <button class="cel" id="cel-l5c2" name="cel-l5c2"></button>
+                  <button class="cel" id="cel-l5c3" name="cel-l5c3"></button>
+                  <button class="cel" id="cel-l6c1" name="cel-l6c1"></button>
+                  <button class="cel" id="cel-l6c2" name="cel-l6c2"></button>
+                  <button class="cel" id="cel-l6c3" name="cel-l6c3"></button>
+               </div>
+      
+               <div class="block" id="block-l2c2">
+                  <button class="cel" id="cel-l4c4" name="cel-l4c4"></button>
+                  <button class="cel" id="cel-l4c5" name="cel-l4c5"></button>
+                  <button class="cel" id="cel-l4c6" name="cel-l4c6"></button>
+                  <button class="cel" id="cel-l5c4" name="cel-l5c4"></button>
+                  <button class="cel" id="cel-l5c5" name="cel-l5c5"></button>
+                  <button class="cel" id="cel-l5c6" name="cel-l5c6"></button>
+                  <button class="cel" id="cel-l6c4" name="cel-l6c4"></button>
+                  <button class="cel" id="cel-l6c5" name="cel-l6c5"></button>
+                  <button class="cel" id="cel-l6c6" name="cel-l6c6"></button>
+               </div>
+      
+               <div class="block" id="block-l2c3">
+                  <button class="cel" id="cel-l4c7" name="cel-l4c7"></button>
+                  <button class="cel" id="cel-l4c8" name="cel-l4c8"></button>
+                  <button class="cel" id="cel-l4c9" name="cel-l4c9"></button>
+                  <button class="cel" id="cel-l5c7" name="cel-l5c7"></button>
+                  <button class="cel" id="cel-l5c8" name="cel-l5c8"></button>
+                  <button class="cel" id="cel-l5c9" name="cel-l5c9"></button>
+                  <button class="cel" id="cel-l6c7" name="cel-l6c7"></button>
+                  <button class="cel" id="cel-l6c8" name="cel-l6c8"></button>
+                  <button class="cel" id="cel-l6c9" name="cel-l6c9"></button>
+               </div>
+
+
+               <div class="block" id="block-l3c1">
+                  <button class="cel" id="cel-l7c1" name="cel-l7c1"></button>
+                  <button class="cel" id="cel-l7c2" name="cel-l7c2"></button>
+                  <button class="cel" id="cel-l7c3" name="cel-l7c3"></button>
+                  <button class="cel" id="cel-l8c1" name="cel-l8c1"></button>
+                  <button class="cel" id="cel-l8c2" name="cel-l8c2"></button>
+                  <button class="cel" id="cel-l8c3" name="cel-l8c3"></button>
+                  <button class="cel" id="cel-l9c1" name="cel-l9c1"></button>
+                  <button class="cel" id="cel-l9c2" name="cel-l9c2"></button>
+                  <button class="cel" id="cel-l9c3" name="cel-l9c3"></button>
+               </div>
+      
+               <div class="block" id="block-l3c2">
+                  <button class="cel" id="cel-l7c4" name="cel-l7c4"></button>
+                  <button class="cel" id="cel-l7c5" name="cel-l7c5"></button>
+                  <button class="cel" id="cel-l7c6" name="cel-l7c6"></button>
+                  <button class="cel" id="cel-l8c4" name="cel-l8c4"></button>
+                  <button class="cel" id="cel-l8c5" name="cel-l8c5"></button>
+                  <button class="cel" id="cel-l8c6" name="cel-l8c6"></button>
+                  <button class="cel" id="cel-l9c4" name="cel-l9c4"></button>
+                  <button class="cel" id="cel-l9c5" name="cel-l9c5"></button>
+                  <button class="cel" id="cel-l9c6" name="cel-l9c6"></button>
+               </div>
+      
+               <div class="block" id="block-l3c3">
+                  <button class="cel" id="cel-l7c7" name="cel-l7c7"></button>
+                  <button class="cel" id="cel-l7c8" name="cel-l7c8"></button>
+                  <button class="cel" id="cel-l7c9" name="cel-l7c9"></button>
+                  <button class="cel" id="cel-l8c7" name="cel-l8c7"></button>
+                  <button class="cel" id="cel-l8c8" name="cel-l8c8"></button>
+                  <button class="cel" id="cel-l8c9" name="cel-l8c9"></button>
+                  <button class="cel" id="cel-l9c7" name="cel-l9c7"></button>
+                  <button class="cel" id="cel-l9c8" name="cel-l9c8"></button>
+                  <button class="cel" id="cel-l9c9" name="cel-l9c9"></button>
+               </div>
+
+               </section>
+
+               <section>
+                  <h2 class="gagne"></h2>
+               </section>
+
+               <div id="chrono2">
+                  <p id="temps2">00 : 00</p>
+               </div>
+
+         <section class="button-container">
+            <button class="buttonValue" name="button1" value="1" id="button1">1</button>
+            <button class="buttonValue" name="button2" value="2" id="button2">2</button>
+            <button class="buttonValue" name="button3" value="3" id="button3">3</button>
+            <button class="buttonValue" name="button4" value="4" id="button4">4</button>
+            <button class="buttonValue" name="button5" value="5" id="button5">5</button>
+            <button class="buttonValue" name="button6" value="6" id="button6">6</button>
+            <button class="buttonValue" name="button7" value="7" id="button7">7</button>
+            <button class="buttonValue" name="button8" value="8" id="button8">8</button>
+            <button class="buttonValue" name="button9" value="9" id="button9">9</button>
+            <button class="buttonValue" name="button-effacer" value="" id="button-effacer"></button>
+         </section>
+
+      </section>
+
+
+
+      <section id="nouvellePartie">
+         <div id="chrono">
+            <p id="temps">00 : 00</p>
+         </div>
+
+         <form>
+            <fieldset>
+               <legend>Difficulté</legend>
+               <div class="niveau">
+                  <input type="radio" name="difficulte" value="facile" id="facile">
+                  <label for="facile">Facile</label>
+               </div>
+               <div class="niveau">
+                  <input type="radio" name="difficulte" value="intermediaire" id="intermediaire" checked>
+                  <label for="intermediaire">Intermédiaire</label>
+               </div>
+
+               <div class="niveau">
+                  <input type="radio" name="difficulte" value="difficile" id="difficile">
+                  <label for="difficile">Difficile</label>
+               </div>
+
+               <div class="niveau">
+                  <input type="radio" name="difficulte" value="extreme" id="extreme">
+                  <label for="extreme">Extreme</label>
+               </div>
+               <!-- <button class="nouvellePartie" name="envoyer" value="Nouvelle partie">Nouvelle partie</button> -->
+         </fieldset>
+         </form>
+         <button class="nouvellePartie" name="envoyer" value="Nouvelle partie">Nouvelle partie</button>
+      </section>
+   </main>   
+</body>
+</html>

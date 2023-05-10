@@ -1,0 +1,66 @@
+:root{
+    --fontSizeH2:1.5rem;
+    --widthImg:80vw;
+    --widthBoxImg:calc(1.1 * var(--widthImg));
+    --heightBoxImg:calc(var(--widthBoxImg) + 2 * var(--fontSizeH2));
+    --radiusBoxImg:calc(0.15 * var(--widthImg));
+    --radiusImg:calc(0.8 * var(--radiusBoxImg));
+}
+
+p{
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+#firstTextMesJeux{
+    margin: 4rem;
+    
+}
+
+h2 {
+    color: beige;
+    font-size: var(--fontSizeH2);
+    text-align: center;
+}
+
+.game-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.game-container > div{
+    border: 2px solid beige;
+    width: var(--widthBoxImg);
+    height: var(--heightBoxImg);
+    border-radius: var(--radiusBoxImg);
+}
+
+.image-container{
+    width: var(--widthImg);
+    height: var(--widthImg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+img {
+    width: var(--widthImg);
+    border-radius: var(--radiusImg);
+}
+
+@media screen and (min-width:1200px) {
+    
+    :root{
+        --widthImg:30vw;
+    }
+
+
+    .game-container{
+        gap: 10vw;
+    }
+}

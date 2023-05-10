@@ -1,0 +1,163 @@
+
+p {
+    text-align: center;
+}
+
+#introContact {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.modernColor {
+    font-size: 5em;
+
+    /* background: linear-gradient(rgb(97, 183, 217) 52%, rgb(224, 246, 255) 60%, rgb(78, 99, 132) 61%); */
+
+    /* background: linear-gradient(to right, rgba(0,0,255,0.75) 0%, rgba(0,255,255,0.75) 10%, rgba(0,255,0,0.75) 45%,
+     rgba(255,255,0,0.75) 50%, rgba(255,165,0,0.75) 70%, rgba(255,0,0,0.75) 90%), 
+     linear-gradient(rgba(0,0,255,0.25) 0%, rgba(0,255,255,0.25) 10%, rgba(0,255,0,0.25) 45%,
+     rgba(255,255,0,0.25) 50%, rgba(255,165,0,0.25) 70%, rgba(255,0,0,0.25) 90%); */
+
+    background: linear-gradient(to right, rgba(0,0,255,0.5) 0%, rgba(0,255,255,0.5) 10%, rgba(0,255,0,0.5) 45%,
+     rgba(255,255,0,0.5) 50%, rgba(255,165,0,0.5) 70%, rgba(255,0,0,0.5) 90%), 
+    linear-gradient(rgb(150, 225, 255) 52%, rgb(9, 10, 10) 60%, rgb(252, 209, 156) 61%);
+
+    background-clip: text;
+  /*add this line, it defines how far the background should extend within an element, here we set it to text */
+  
+  -webkit-background-clip: text;
+  /* add this line, for browsers compatibility */
+
+  -webkit-text-fill-color: transparent;
+  /* specifies the fill color of text characters. We use transparent to use the background value as our text fill */
+
+  animation: wave 5000ms ease alternate infinite;
+  /* add this line */
+  transition: all 0.5s ease;
+  /* add this line */
+}
+
+@keyframes wave {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: 35vw 5vh;
+    }
+  }
+
+fieldset {
+    color: white;
+    width: 50%;
+    background-color: rgb(75,90,124);
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    padding-left: 1.5%;
+    padding-right: 1.5%;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
+fieldset input:focus , fieldset textarea:focus {
+    background-color:antiquewhite ;
+}
+
+fieldset input {
+    height: 30px;
+}
+
+fieldset input , fieldset textarea {
+   margin-top: 5px;
+   border-radius: 10px;
+}
+
+#blockEmail {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+#email {
+    
+    width: 100%;
+   
+}
+
+fieldset legend {
+    font-size: 1.2em;
+    background-color: rgb(78, 111, 188);
+    border: 1px solid white;
+    border-radius: 10px;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.nomPrenom {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    gap: 25px;
+}
+
+#blockTextarea {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+fieldset textarea {
+    width: 100%;
+}
+
+
+#send {
+    background-color:  rgb(75,90,124);
+    color: white;
+    border: 1px solid white;
+    box-shadow: 3px 3px 3px rgba(230, 230 , 230, 0.7);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    height: 40px;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: 1.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+
+#send:hover {
+    box-shadow: 6px 6px 6px rgba(252, 255, 55, 0.7);
+    cursor: pointer;
+}
+
+fieldset div {
+    position: relative;
+    /* border: 1px solid red; */
+}
+
+.mandatory {
+    display: inline;
+    position: absolute;
+    color: rgb(255, 122, 122);
+    font-size: 1.5em;
+    top: -20px;
+    left: -12px;
+    /* border: 1px solid white; */
+
+}
+
+
+
+@media screen and (max-width: 850px) {
+    fieldset {
+        width: 85%;
+    }
+}
