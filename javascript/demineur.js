@@ -6,6 +6,122 @@ function entierAleatoire(min, max)
  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const ligMini= (lig, niveau) => {
+    let ligMin;
+    if(lig===0){
+        ligMin=0;
+    } else if(lig===nbLigne(niveau)-1){
+        ligMin=lig-1;
+    } else {
+        ligMin=lig-1;
+    }
+    return ligMin;
+}
+
+const ligMaxi= (lig, niveau) => {
+    let ligMax; 
+    if(lig===0){
+        ligMax=lig+2;
+    } else if(lig===nbLigne(niveau)-1){
+        ligMax=lig+1;
+    } else {
+        ligMax=lig+2;
+    }
+    return ligMax;
+}
+
+const colMini= (col, niveau) => {
+    let colMin;
+    if(col===0){
+        colMin=0;
+    } else if(col===nbColonnes(niveau)-1){
+        colMin=col-1;
+    } else {
+        colMin=col-1;
+    }
+    return colMin;
+}
+
+const colMaxi= (col, niveau) => {
+    let colMax; 
+    if(col===0){
+        colMax=col+2;
+    } else if(col===nbColonnes(niveau)-1){
+        colMax=col+1;
+    } else {
+        colMax=col+2;
+    }
+    return colMax;
+}
+
+const ligCellule = (identifiant) => {
+    return parseInt(identifiant.substr(5,1));
+}
+
+const colCellule = (identifiant) => {
+    return parseInt(identifiant.substr(7,1));
+}
+
+
+/////////////////////////////////////////////////////////////////////////
+                // let ligCell=ligCellule(cellule.id);
+                // let colCell=colCellule(cellule.id);
+                // console.log(cellule.id,ligCell);
+                const afficherCellulesZeroMine = (ligCell,colCell) => {
+
+                    let compteurMineAutour=0;
+                    for(let lig=ligMini(ligCell,niveau);lig<ligMaxi(ligCell,niveau);lig++){
+                        for(let col=colMini(colCell,niveau);col<colMaxi(colCell,niveau);col++){
+                            let celluleAutour=document.getElementById(`cel-l${lig}c${col}`);
+                            if(celluleAutour.value==="mine"){
+                                compteurMineAutour++;
+                            }
+                        }
+                    }
+
+                    if(compteurMineAutour===0){ //si pas de mine autour on affiche toutes les cellules qui ne sont pas affichées
+                        for(let lig=ligMini(ligCell,niveau);lig<ligMaxi(ligCell,niveau);lig++){
+                            for(let col=colMini(colCell,niveau);col<colMaxi(colCell,niveau);col++){
+                                let celluleAutour=document.getElementById(`cel-l${lig}c${col}`);
+                                let ligCelluleAutour=ligCellule(celluleAutour.id);
+                                let colCelluleAutour=colCellule(celluleAutour.id);
+                                
+                                //if(celluleAutour.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
+
+                                
+
+
+                                    if(celluleAutour.dataset.class !== "active"){
+                                        console.log("dataset dataClass active");
+                                        console.log("ligCelluleAutour", ligCelluleAutour,"colCelluleAutour",colCelluleAutour);
+                                        if(celluleAutour.value==="null"){
+                                            // console.log("null");
+                                            celluleAutour.style.border="1px solid lightgray";
+                                            celluleAutour.dataset.class="active";
+                                            //A SUPPRIMER APRES TESTS
+                                            celluleAutour.style.color="gray";
+                                            
+                                        } else {
+                                            // console.log("valeur");
+                                            celluleAutour.innerHTML=celluleAutour.value;
+                                            celluleAutour.style.border="1px solid lightgray";
+                                            celluleAutour.dataset.class="active";
+                                            //A SUPPRIMER APRES TESTS
+                                            celluleAutour.style.color="gray";
+                                        }
+                                        //on relance la fonction à partir de la cellule actuelle pour continuer le cycle
+                                        afficherCellulesZeroMine(ligCelluleAutour,colCelluleAutour);
+                                    }
+                            }
+                        }
+                    }
+
+                }
+
+                //afficherCellulesZeroMine(ligCell,colCell);
+                /////////////////////////////////////////////////////////////////
+
+
 //---------------------------------------------------------
 
 
@@ -76,6 +192,7 @@ const creationPlateauDemineur = (niveau) => {
             newCell.id=identifiant;
             newCell.value=null;
             newCell.className="cell";
+            newCell.dataset.mine="faux";
             //propriétés CSS du bouton (longueur largeur boxSizing color border)
             newCell.style.width="100%";
             newCell.style.height="100%";
@@ -123,37 +240,16 @@ const creationPlateauDemineur = (niveau) => {
     //fonction permettant d'attribuer à chaque case 1 valeur en fonction du nombre de mines qui l'entourent
     const setNombreMineAutour= () => {
         for(let lig=0; lig<nombreLignes;lig++){
-            let ligMin;
-            let ligMax;
-            if(lig===0){
-                ligMin=0;
-                ligMax=lig+2;
-            } else if(lig===nombreLignes-1){
-                ligMin=lig-1;
-                ligMax=lig+1;
-            }
-            else {
-                ligMin=lig-1;
-                ligMax=lig+2;
-            }
+            let ligMin = ligMini(lig,niveau);
+            let ligMax = ligMaxi(lig,niveau);
+
 
             for(let col=0; col<nombreColonnes;col++){
 
-                let colMin;
-                let colMax;
-                if(col===0){
-                    colMin=0;
-                    colMax=col+2;
-                } else if(col===nombreColonnes-1){
-                    colMin=col-1;
-                    colMax=col+1;
-                }
-                else {
-                    colMin=col-1;
-                    colMax=col+2;
-                }
-
+                let colMin = colMini(col,niveau);
+                let colMax = colMaxi(col,niveau);
                 let caseLigCol=document.getElementById(`cel-l${lig}c${col}`);
+                
                 if(caseLigCol.value !="mine"){
                     let compteurMine=0;
                     for(let ligAutour=ligMin; ligAutour<ligMax;ligAutour++){
@@ -170,6 +266,8 @@ const creationPlateauDemineur = (niveau) => {
                         caseLigCol.value=compteurMine;
                     }
                 }
+                //A SUPPRIMER APRES LES ESSAIS
+                caseLigCol.innerHTML=caseLigCol.value;
             }
         }
     }
@@ -180,6 +278,8 @@ const creationPlateauDemineur = (niveau) => {
 
 creationPlateauDemineur("facile");
 //--------------------------------------------------------------------------------
+
+const niveau="facile";
 
 //--------INTERRACTION AVEC LES BOUTONS---------------------------------
 const buttonMineFirst=document.getElementById("mineFirst");
@@ -193,8 +293,34 @@ buttonMineFirst.addEventListener("focus", (event) =>{
     buttonValeurFirst.style.boxShadow="none";
     buttonValeurFirst.style.border= "5px outset #c0c0c0"
 
+    buttonCellDemineur.forEach(cellule => {
+        cellule.addEventListener("click", () => {
+            console.log(cellule);
+            let ligCell=ligCellule(cellule.id);
+            let colCell=colCellule(cellule.id);
+
+            if(cellule.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
+                    if(cellule.dataset.mine != "vrai"){
+                    cellule.style.backgroundImage = 'url("../Images/positionMine.jpg")';
+                    cellule.dataset.mine = "vrai";
+                    cellule.style.backgroundSize = "cover";
+                    } else {
+                        cellule.style.backgroundImage = 'none';
+                    cellule.dataset.mine = "faux";
+                    }
+
+                
+                } else {
+                    afficherCellulesZeroMine(ligCell,colCell);
+                }
+            
+        })
+    })
     
 })
+
+
+
 
 
 buttonValeurFirst.addEventListener("click", (event) =>{
@@ -204,24 +330,37 @@ buttonValeurFirst.addEventListener("click", (event) =>{
     buttonMineFirst.style.border= "5px outset #c0c0c0"
 
     buttonCellDemineur.forEach(cellule => {
-        cellule.addEventListener("click", (eventCel) => {
+        cellule.addEventListener("click", () => {
             console.log(cellule);
-            if(cellule.dataset.class != "active"){
+            let ligCell=ligCellule(cellule.id);
+            let colCell=colCellule(cellule.id);
+
+            if(cellule.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
                 if(cellule.value === "mine"){
-                    console.log("mine");
+                    // console.log("mine");
                     cellule.style.backgroundImage = 'url("../Images/mine.jpg")';
                 } else if(cellule.value==="null"){
-                    console.log("null");
+                    // console.log("null");
                     cellule.style.border="1px solid lightgray";
+                    cellule.dataset.class="active";
+                    //A SUPPRIMER APRES TESTS
+                    cellule.style.color="gray";
+
+                    afficherCellulesZeroMine(ligCell,colCell);
                     
                 } else {
-                    console.log("valeur");
+                    // console.log("valeur");
                     cellule.innerHTML=cellule.value;
                     cellule.style.border="1px solid lightgray";
                     cellule.dataset.class="active";
+                    //A SUPPRIMER APRES TESTS
+                    cellule.style.color="gray";
                 }
-            } else {
-                console.log("active");
+            } else { //si la valeur est déjà affichée affiche les cases autour s'il n'y a pas de mine
+                
+
+                afficherCellulesZeroMine(ligCell,colCell);
+                // /////////////////////////////////////////////////////////////////
             }
         })
     })
