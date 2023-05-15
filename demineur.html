@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!--Pour que les @media fonctionnent avec tous les smartphones -->
     <link rel="styleSheet" href="Styles/style.css" />
     <link rel="styleSheet" href="Styles/demineur.css" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/segment7" type="text/css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Manrope&family=Tilt+Prism&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
     <script type="module" src="javascript/demineur.js"></script>
    
@@ -33,6 +36,32 @@
     </nav>
 
     <main>
+        
+        <form>
+            <fieldset class="form">
+                <legend>Difficulté</legend>
+                <div>
+                    <input type="radio" name="niveau" value="facile" id="radioFacile" >
+                    <label for="radioFacile">Facile</label>
+                </div>
+                <div>
+                    <input type="radio" name="niveau" value="intermediaire" id="radioMoyen" checked>
+                    <label for="radioMoyen">Moyen</label>
+                </div>
+                <div>
+                    <input type="radio" name="niveau" value="difficile" id="radioDifficile">
+                    <label for="radioDifficile">Difficile</label>
+                </div>
+            </fieldset>
+        </form>
+
+
+        <section id="bandeauSuperieur">
+            <div id="compteurMine">99</div>
+            <button id="buttonNouvellePartie"></button>
+            <div id="tempsEcoule">00:00</div>
+        </section>
+
         <section id="demineur">
             <!-- défini dans le script demineur.js -->
         </section>
@@ -46,6 +75,12 @@
 
     </main>
 
+        <!-- <div id="container-test">
+            <img src="Images/emoticone-moqueur.gif" id="img">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam natus veritatis magni corporis? Quod, delectus. Pariatur at dolores porro distinctio inventore consequuntur similique excepturi laudantium sit, facere eligendi provident delectus.</p>
+            <br>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae explicabo facere aspernatur. Repellendus totam at sequi ipsum, dicta accusantium eveniet tenetur voluptatibus quae nulla maiores ea assumenda molestiae recusandae a?</p>
+        </div> -->
 
     <footer>
         <div class="lastInfo">
