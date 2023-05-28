@@ -70,8 +70,8 @@ const ligCellule = (identifiant) => {
         }
     }
 }
-console.log("cel-l11c8",ligCellule("cel-l11c8"),"cel-l11c22",ligCellule("cel-l11c22"));
-console.log("cel-l1c18",ligCellule("cel-l1c18"),"cel-l2c22",ligCellule("cel-l2c22"));
+// console.log("cel-l11c8",ligCellule("cel-l11c8"),"cel-l11c22",ligCellule("cel-l11c22"));
+// console.log("cel-l1c18",ligCellule("cel-l1c18"),"cel-l2c22",ligCellule("cel-l2c22"));
 
 //cel-l11c8
 //cel-l11c22
@@ -89,64 +89,89 @@ const colCellule = (identifiant) => {
         return parseInt(identifiant.substr(8,2));
     }
 }
-
-console.log("cel-l11c8",colCellule("cel-l11c8"),"cel-l11c22",colCellule("cel-l11c22"));
-console.log("cel-l1c18",colCellule("cel-l1c18"),"cel-l2c22",colCellule("cel-l2c22"));
 //-------------------------
+
+//fonction permettant d'afficher toutes les mines autour de la cellule sur laquelle une mine a été positionnée par erreur
+const vraiePositionMine = (ligCell,colCell) => {
+    for(let lig=ligMini(ligCell,niveau);lig<ligMaxi(ligCell,niveau);lig++){
+        for(let col=colMini(colCell,niveau);col<colMaxi(colCell,niveau);col++){
+            let celluleAutour=document.getElementById(`cel-l${lig}c${col}`);
+            if(celluleAutour.value==="mine" && celluleAutour.dataset.mine !=="vrai"){
+                celluleAutour.style.backgroundImage= 'url("../Images/explosion.gif")';
+            }
+        }
+    }
+}
+
 
 /////////////////////////////////////////////////////////////////////////
 
-                const afficherCellulesZeroMine = (ligCell,colCell) => {
+//fonction permettant d'afficher toutes les cellules qui n'ont pas de mine lorsqu'on clique sur une cellule déjà activée
+//les cellules arrêtent de s'afficher s'il y a une mine non repérée à proximité
+//si une mine a été placée à une mauvaise position la partie est perdue
+const afficherCellulesZeroMine = (ligCell,colCell) => {
 
-                    let compteurMineAutour=0;
-                    for(let lig=ligMini(ligCell,niveau);lig<ligMaxi(ligCell,niveau);lig++){
-                        for(let col=colMini(colCell,niveau);col<colMaxi(colCell,niveau);col++){
-                            console.log("ligmini",ligMini(ligCell,niveau),"ligmax",ligMaxi(ligCell,niveau),"colmini",colMini(colCell,niveau),"colmax",colMaxi(colCell,niveau));
-                            let celluleAutour=document.getElementById(`cel-l${lig}c${col}`);
-                            if(celluleAutour.value==="mine" && celluleAutour.dataset.mine !=="vrai"){
-                                compteurMineAutour++;
-                            }
+    let compteurMineAutour=0;
+    for(let lig=ligMini(ligCell,niveau);lig<ligMaxi(ligCell,niveau);lig++){
+        for(let col=colMini(colCell,niveau);col<colMaxi(colCell,niveau);col++){
+            // console.log("ligmini",ligMini(ligCell,niveau),"ligmax",ligMaxi(ligCell,niveau),"colmini",colMini(colCell,niveau),"colmax",colMaxi(colCell,niveau));
+            let celluleAutour=document.getElementById(`cel-l${lig}c${col}`);
+            
+            if(celluleAutour.value !=="mine" && celluleAutour.dataset.mine ==="vrai"){
+                //si le joueur a placé une mine au mauvais endroit autour de la cellule cliquée : partie perdue
+                partiePerdue();
+                //l'image de la mine mal placée est barrée (chargement d'une image barrée)
+                celluleAutour.style.backgroundImage = 'url("../Images/positionMinePerdu.png")';
+                //le placement réel de la mine est affiché
+                const ligCellAutour = ligCellule(celluleAutour.id);
+                const colCellAutour = colCellule(celluleAutour.id);
+                vraiePositionMine(ligCellAutour,colCellAutour);
+                return;
+            }
+            else if(celluleAutour.value==="mine" && celluleAutour.dataset.mine !=="vrai"){
+                compteurMineAutour++;
+            }
+        }
+    }
+
+    if(compteurMineAutour===0){ //si pas de mine autour on affiche toutes les cellules qui ne sont pas affichées
+        for(let lig=ligMini(ligCell,niveau);lig<ligMaxi(ligCell,niveau);lig++){
+            for(let col=colMini(colCell,niveau);col<colMaxi(colCell,niveau);col++){
+                let celluleAutour=document.getElementById(`cel-l${lig}c${col}`);
+                let ligCelluleAutour=ligCellule(celluleAutour.id);
+                let colCelluleAutour=colCellule(celluleAutour.id);
+                
+                //if(celluleAutour.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
+
+                
+
+
+                    if(celluleAutour.dataset.class !== "active"){
+                        // console.log("dataset dataClass active");
+                        // console.log("ligCelluleAutour", ligCelluleAutour,"colCelluleAutour",colCelluleAutour);
+                        if(celluleAutour.value==="null"){
+                            // console.log("null");
+                            celluleAutour.style.border="1px solid lightgray";
+                            celluleAutour.dataset.class="active";
+                            //A SUPPRIMER APRES TESTS
+                            celluleAutour.style.color="gray";
+                            
+                        } else {
+                                // console.log("valeur");
+                                celluleAutour.innerHTML=celluleAutour.value;
+                                celluleAutour.style.border="1px solid lightgray";
+                                celluleAutour.dataset.class="active";
+                                //A SUPPRIMER APRES TESTS
+                                celluleAutour.style.color="gray";
                         }
+                        //on relance la fonction à partir de la cellule actuelle pour continuer le cycle
+                        afficherCellulesZeroMine(ligCelluleAutour,colCelluleAutour);
                     }
+            }
+        }
+    }
 
-                    if(compteurMineAutour===0){ //si pas de mine autour on affiche toutes les cellules qui ne sont pas affichées
-                        for(let lig=ligMini(ligCell,niveau);lig<ligMaxi(ligCell,niveau);lig++){
-                            for(let col=colMini(colCell,niveau);col<colMaxi(colCell,niveau);col++){
-                                let celluleAutour=document.getElementById(`cel-l${lig}c${col}`);
-                                let ligCelluleAutour=ligCellule(celluleAutour.id);
-                                let colCelluleAutour=colCellule(celluleAutour.id);
-                                
-                                //if(celluleAutour.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
-
-                                
-
-
-                                    if(celluleAutour.dataset.class !== "active"){
-                                        // console.log("dataset dataClass active");
-                                        // console.log("ligCelluleAutour", ligCelluleAutour,"colCelluleAutour",colCelluleAutour);
-                                        if(celluleAutour.value==="null"){
-                                            // console.log("null");
-                                            celluleAutour.style.border="1px solid lightgray";
-                                            celluleAutour.dataset.class="active";
-                                            //A SUPPRIMER APRES TESTS
-                                            celluleAutour.style.color="gray";
-                                            
-                                        } else {
-                                                // console.log("valeur");
-                                                celluleAutour.innerHTML=celluleAutour.value;
-                                                celluleAutour.style.border="1px solid lightgray";
-                                                celluleAutour.dataset.class="active";
-                                                //A SUPPRIMER APRES TESTS
-                                                celluleAutour.style.color="gray";
-                                        }
-                                        //on relance la fonction à partir de la cellule actuelle pour continuer le cycle
-                                        afficherCellulesZeroMine(ligCelluleAutour,colCelluleAutour);
-                                    }
-                            }
-                        }
-                    }
-
-                }
+}
 
     
                 
@@ -171,10 +196,11 @@ secondes=secondes <10 ? "0" + secondes:secondes;
 }
 augmenterTemps();
 
-                
+
+//fonction décrivant ce qu'il se passe quand le joueur perd la partie
 const partiePerdue = () => {
-    // const buttonNouvellePartie = document.getElementById("buttonNouvellePartie");
     
+    //les cellules ne sont plus cliquables
     buttonCellDemineur.forEach( (cellule) => {
         cellule.disabled=true;
         });
@@ -192,15 +218,6 @@ const partiePerdue = () => {
 }
 
 
-//fonction pour afficher l'image de fin de jeu
-const imageGameOver = () => {
-    const imagePerdu = document.createElement("img");
-    imagePerdu.src="../Images/emoticone-moqueur.gif";
-    imagePerdu.id="imagePerdu";
-    plateauDemineur.appendChild(imagePerdu);
-    plateauDemineur.style.position="relative";
-    
-}
 
 
 //---------------------------------------------------------
@@ -254,17 +271,17 @@ const nbColonnes = (niveau) => {
 //Création d'une constante récupérant la section démineur dans le HTML
 const plateauDemineur = document.getElementById("demineur");
 plateauDemineur.className="plateauDemineur";
-console.log(plateauDemineur);
+
 // création d'une constante pour récupérer le bandeau superieur et le formDifficulté
 const bandeauSuperieur=document.getElementById("bandeauSuperieur");
 const formDifficulte=document.querySelector("form");
 //création constante pour récupérer la difficulté
 const difficulte=document.querySelectorAll('input[name="niveau"]');
-console.log(difficulte);
-console.log(difficulte.length);
+// console.log(difficulte);
+// console.log(difficulte.length);
 let niveau;
 for(let i=0;i<difficulte.length;i++){
-    console.log(difficulte[i].value);
+    // console.log(difficulte[i].value);
     if(difficulte[i].checked===true){
         niveau=difficulte[i].value;
     }
@@ -272,7 +289,7 @@ for(let i=0;i<difficulte.length;i++){
 //création constante pour récupérer le bouton nouvelle partie
 const buttonNouvellePartie = document.getElementById("buttonNouvellePartie");
 
-console.log(niveau);
+// console.log(niveau);
 // console.log(niveau.value);
 
 
@@ -428,14 +445,21 @@ const creationPlateauDemineur = (niveau) => {
 }
 
 creationPlateauDemineur(niveau);
+console.log(plateauDemineur);
 //--------------------------------------------------------------------------------
+
+
+
+
+
 
 
 //--------INTERRACTION AVEC LES BOUTONS---------------------------------
 const buttonMineFirst=document.getElementById("mineFirst");
 const buttonValeurFirst=document.getElementById("valeurFirst");
-const buttonCellDemineur=document.querySelectorAll('button[class="cell"]');
-let boutonUtilise;
+let buttonCellDemineur=document.querySelectorAll('button[class="cell"]');
+let boutonUtilise = "valeurFirst";
+localStorage.setItem("boutonUtilise","valeurFirst");
 
 //créons une variable pour compter les mines restantes sur le plateau
 let compteurMineRestante =nbMine(niveau);
@@ -443,26 +467,45 @@ let compteurMineRestante =nbMine(niveau);
 const compteurPlateauDemineur=document.getElementById("compteurMine");
 compteurPlateauDemineur.innerHTML=compteurMineRestante;
 
+
 //actions si le bouton MineFirst est sélectionné
 buttonMineFirst.addEventListener("focus", (event) =>{
     event.target.style.boxShadow="2px 2px 2px rgb(255, 119, 0)"
     event.target.style.border= "5px inset #c0c0c0";
     buttonValeurFirst.style.boxShadow="none";
     buttonValeurFirst.style.border= "5px outset #c0c0c0";
-    buttonValeurFirst.removeEventListener("focus",(event));
+    // buttonValeurFirst.removeEventListener("focus",(event));
     // buttonValeurFirst.onclick();
     boutonUtilise="mineFirst";
+    localStorage.setItem("boutonUtilise","mineFirst");
     console.log("buttonMineFirst" ,boutonUtilise);
+    console.log("localstorage mine first:", localStorage.getItem("boutonUtilise"));
+})
 
 
-    buttonCellDemineur.forEach(cellule => {
-        cellule.addEventListener("click", () => {
 
-            let ligCell=ligCellule(cellule.id);
+//Actions quand on clique sur le bouton valeur FIRST
+    buttonValeurFirst.addEventListener("focus", (event) =>{
+    event.target.style.boxShadow="2px 2px 2px rgb(255, 119, 0)"
+    event.target.style.border= "5px inset #c0c0c0";
+    buttonMineFirst.style.boxShadow="none";
+    buttonMineFirst.style.border= "5px outset #c0c0c0";
+    // buttonMineFirst.removeEventListener("focus",(event));
+    boutonUtilise="valeurFirst";
+    localStorage.setItem("boutonUtilise","valeurFirst");
+    console.log("buttonValeurFirst" ,boutonUtilise);
+    console.log("localstorage valeur first:", localStorage.getItem("boutonUtilise"));
+    })
+
+//-----------------------------------------------------------------
+    //fonction décrivant ce qui se passe quand on clique sur une case
+    const actionClickCase = (cellule) => {
+        let ligCell=ligCellule(cellule.id);
             let colCell=colCellule(cellule.id);
+            boutonUtilise = localStorage.getItem("boutonUtilise");
 
-            // console.log('minefirst');
-            if(boutonUtilise==="mineFirst"){
+             console.log('bouton utilisé : ' + boutonUtilise);
+             if(boutonUtilise==="mineFirst"){
                 if(cellule.dataset.class==="active" && cellule.dataset.mine==="faux"){
                     afficherCellulesZeroMine(ligCell,colCell);
                 }
@@ -489,34 +532,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                 } else {
                     afficherCellulesZeroMine(ligCell,colCell);
                 }
-            }
-        })
-    })
-    
-    
-})
-
-
-
-
-
-    buttonValeurFirst.addEventListener("focus", (event) =>{
-    event.target.style.boxShadow="2px 2px 2px rgb(255, 119, 0)"
-    event.target.style.border= "5px inset #c0c0c0";
-    buttonMineFirst.style.boxShadow="none";
-    buttonMineFirst.style.border= "5px outset #c0c0c0";
-    buttonMineFirst.removeEventListener("focus",(event));
-    boutonUtilise="valeurFirst";
-    console.log("buttonValeurFirst" ,boutonUtilise);
-
-    buttonCellDemineur.forEach(cellule => {
-        cellule.addEventListener("click", () => {
-            console.log(cellule);
-            let ligCell=ligCellule(cellule.id);
-            let colCell=colCellule(cellule.id);
-            console.log("ligcell",ligCell,"colcell",colCell);
-
-            if(boutonUtilise==="valeurFirst"){
+             } else if(boutonUtilise==="valeurFirst"){
                 if(cellule.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
                     if(cellule.value === "mine"){
                         // console.log("mine");
@@ -545,11 +561,159 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                     afficherCellulesZeroMine(ligCell,colCell);
                     // /////////////////////////////////////////////////////////////////
                 }
-            }
+
+             }
+    }
+//-----------------------------------
+
+//-----------------------------------------------------------------
+    //fonction décrivant ce qui se passe quand on clique DROIT sur une case
+    const actionClickDroitCase = (cellule) => {
+        let ligCell=ligCellule(cellule.id);
+            let colCell=colCellule(cellule.id);
+            boutonUtilise = localStorage.getItem("boutonUtilise");
+
+             console.log('bouton utilisé : ' + boutonUtilise);
+             if(boutonUtilise==="valeurFirst"){
+                if(cellule.dataset.class==="active" && cellule.dataset.mine==="faux"){
+                    afficherCellulesZeroMine(ligCell,colCell);
+                }
+                else if(cellule.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
+                        if(cellule.dataset.mine != "vrai"){
+                        cellule.style.backgroundImage = 'url("../Images/positionMine.jpg")';
+                        cellule.dataset.mine = "vrai";
+                        cellule.style.backgroundSize = "cover";
+                        //on décrémente le compteurmine
+                        compteurMineRestante--;
+                        compteurPlateauDemineur.innerHTML=compteurMineRestante;
+                        } else {
+                            cellule.style.backgroundImage = 'none';
+                            cellule.dataset.mine = "faux";
+                            //on incremente le compteurmine
+                            compteurMineRestante++;
+                            compteurPlateauDemineur.innerHTML=compteurMineRestante;
+                        }
+                } else if(cellule.class="mine"){
+                    cellule.dataset.class = "desactive";
+                    cellule.style.backgroundImage = 'none';
+                    cellule.dataset.mine = "faux";
+
+                } else {
+                    afficherCellulesZeroMine(ligCell,colCell);
+                }
+             } else if(boutonUtilise==="mineFirst"){
+                if(cellule.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
+                    if(cellule.value === "mine"){
+                        // console.log("mine");
+                        cellule.style.backgroundImage = 'url("../Images/explosion.gif")';
+                        partiePerdue();
+                    } else if(cellule.value==="null"){
+                        // console.log("null");
+                        cellule.style.border="1px solid lightgray";
+                        cellule.dataset.class="active";
+                        //A SUPPRIMER APRES TESTS
+                        cellule.style.color="gray";
+
+                        afficherCellulesZeroMine(ligCell,colCell);
+                        
+                    } else {
+                        // console.log("valeur");
+                        cellule.innerHTML=cellule.value;
+                        cellule.style.border="1px solid lightgray";
+                        cellule.dataset.class="active";
+                        //A SUPPRIMER APRES TESTS
+                        cellule.style.color="gray";
+                    }
+                } else { //si la valeur est déjà affichée affiche les cases autour s'il n'y a pas de mine
+                    
+
+                    afficherCellulesZeroMine(ligCell,colCell);
+                    // /////////////////////////////////////////////////////////////////
+                }
+
+             }
+    }
+//-------------------------------------------------
+
+
+
+//ajout d'un event listener au click gauche à chaque cellule du plateau demineur
+    buttonCellDemineur.forEach(cellule => {
+        cellule.addEventListener("click", () => {
+            actionClickCase(cellule);
+        })
+    })
+
+//ajout d'un event listener au click droit à chaque cellule du plateau demineur
+buttonCellDemineur.forEach(cellule => {
+    cellule.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        actionClickDroitCase(cellule);
+    })
+})
+
+
+
+//---------------------------------------
+//Ajout d'une action quand on clique sur le bouton nouvelle partie
+buttonNouvellePartie.addEventListener("click" , () => {
+    
+    localStorage.setItem("boutonUtilise","valeurFirst");
+    
+    //on remet toutes les cellules en abled    
+    buttonCellDemineur.forEach( (cellule) => {
+        cellule.disabled=false;
+        });
+
+    //on efface le gif moqueur
+    const imagePerdu = document.createElement("img");
+    imagePerdu.innerHTML="";
+
+    //on réinitialise le temps
+    clearTimeout(time);
+    temps=0;
+    augmenterTemps();
+
+
+    //on remodifie l'image du bouton NouvellePartie
+    buttonNouvellePartie.style.backgroundImage='url("../Images/emoticone-reflexion.png")';
+    
+    //on supprime le plateauDemineur existant avant d'en créer un nouveau 
+     plateauDemineur.innerHTML="";
+
+    //on réinitialise le niveau de difficulté
+    for(let i=0;i<difficulte.length;i++){
+        console.log(difficulte[i].value);
+        if(difficulte[i].checked===true){
+            niveau=difficulte[i].value;
+        }
+    }
+
+    //on réinitialise le compteur de mines
+    compteurMineRestante =nbMine(niveau);
+    //affichons cette valeur dans le compteur du plateau demineur
+    compteurPlateauDemineur.innerHTML=compteurMineRestante;
+
+    //on crée un nouveau plateau de jeu
+    creationPlateauDemineur(niveau);
+    console.log(plateauDemineur);
+
+    //on redéfinit ce que sont les cellules (car les anciennes ont été effacées et n'existent plus)
+    buttonCellDemineur=document.querySelectorAll('button[class="cell"]');
+
+
+    //on réapplique des event listener aux cellules
+    buttonCellDemineur.forEach(cellule => {
+        cellule.addEventListener("click", () => {
+            actionClickCase(cellule);
+        })
+    })
+    //et l'évênement au click droit
+    buttonCellDemineur.forEach(cellule => {
+        cellule.addEventListener("contextmenu", (event) => {
+        event.preventDefault();
+        actionClickDroitCase(cellule);
         })
     })
 
 })
-
-//-----------------------------------------------------------------
-
