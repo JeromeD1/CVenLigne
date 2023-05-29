@@ -1,3 +1,49 @@
+let largeurWindow=window.innerWidth;
+let hauteurWindow=window.innerHeight;
+
+
+//fonction renvoyant une largeur de popup en px en fonction de la taille de la fenetre
+const setWidthPartieFinie = (largeur) => {
+    if(largeur > 600){
+        return "560px";
+    } else {
+        return 0.9 * largeur + "px";
+    }
+}
+
+const setWidthPartieFinieVal = (largeur) => {
+    if(largeur > 600){
+        return 560;
+    } else {
+        return 0.9 * largeur ;
+    }
+}
+
+//fonction renvoyant la hauteur de la fenetre en px
+const setWindowHeight = () => {
+    return hauteurWindow + "px";
+}
+
+const setPositionLeft = (largeur) => {
+    const positionLeft = 0.5 * (largeur - setWidthPartieFinieVal(largeur));
+    console.log("left",positionLeft);
+    return positionLeft + "px";
+}
+
+//attribution des largeurs et hauteurs de fenêtre à des variables CSS
+const root =document.documentElement;
+root.style.setProperty("--largeurPopupFin", setWidthPartieFinie(largeurWindow));
+root.style.setProperty("--positionLeft", setPositionLeft(largeurWindow));
+root.style.setProperty("--windowHeight", setWindowHeight());
+root.style.setProperty("--windowWidth", largeurWindow + "px"); 
+
+
+//fonction qui calcule la position de l'émonicone moqueur quand la partie est perdue
+const leftEmoticonePerdu = (widthPlateauDemineur) => {
+   const leftPosition = 0.5 * (widthPlateauDemineur - 50) + "px";
+   root.style.setProperty("--leftEmoticonePerdu", leftPosition);
+}
+
 //---------FONCTIONS UTILITAIRES------------------------------
 
 //fonction qui retourne un entier aléatoire entre 2 valeurs
@@ -154,7 +200,7 @@ const afficherCellulesZeroMine = (ligCell,colCell) => {
                             celluleAutour.style.border="1px solid lightgray";
                             celluleAutour.dataset.class="active";
                             //A SUPPRIMER APRES TESTS
-                            celluleAutour.style.color="gray";
+                            // celluleAutour.style.color="gray";
                             
                         } else {
                                 // console.log("valeur");
@@ -162,7 +208,7 @@ const afficherCellulesZeroMine = (ligCell,colCell) => {
                                 celluleAutour.style.border="1px solid lightgray";
                                 celluleAutour.dataset.class="active";
                                 //A SUPPRIMER APRES TESTS
-                                celluleAutour.style.color="gray";
+                                // celluleAutour.style.color="gray";
                         }
                         //on relance la fonction à partir de la cellule actuelle pour continuer le cycle
                         afficherCellulesZeroMine(ligCelluleAutour,colCelluleAutour);
@@ -378,6 +424,8 @@ const creationPlateauDemineur = (niveau) => {
             plateauDemineur.style.height=`calc(${nombreLignes} * 40px)`;
             bandeauSuperieur.style.width=`calc(${nombreColonnes} * 40px)`;
             formDifficulte.style.width=`calc(${nombreColonnes} * 40px)`;
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(nombreColonnes * 40);
         }
         else {
             plateauDemineur.style.grid = `repeat(${nombreLignes},50px) / repeat(${nombreColonnes},50px)`;
@@ -385,6 +433,8 @@ const creationPlateauDemineur = (niveau) => {
             plateauDemineur.style.height=`calc(${nombreLignes} * 50px)`;
             bandeauSuperieur.style.width=`calc(${nombreColonnes} * 50px)`;
             formDifficulte.style.width=`calc(${nombreColonnes} * 50px)`;
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(nombreColonnes * 50);
         }
 
     } else if (niveau==="intermediaire"){
@@ -395,11 +445,15 @@ const creationPlateauDemineur = (niveau) => {
             plateauDemineur.style.overflowY="scroll";
             bandeauSuperieur.style.width="320px";
             formDifficulte.style.width="320px";
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(320);
         } else if(window.matchMedia("(min-width: 600px)").matches) {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width=`calc(${nombreLignes} * 30px)`;
             bandeauSuperieur.style.width=`calc(${nombreLignes} * 30px)`;
             formDifficulte.style.width=`calc(${nombreLignes} * 30px)`;
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(nombreLignes * 30);
          } 
         
     } else {
@@ -410,6 +464,8 @@ const creationPlateauDemineur = (niveau) => {
             plateauDemineur.style.overflowY="scroll";
             bandeauSuperieur.style.width="320px";
             formDifficulte.style.width="320px";
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(320);
         } else if(window.matchMedia("(max-width: 800px)").matches) {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width="570px";
@@ -417,6 +473,8 @@ const creationPlateauDemineur = (niveau) => {
             plateauDemineur.style.overflowY="scroll";
             bandeauSuperieur.style.width="570px";
             formDifficulte.style.width="570px";
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(570);
         }  else if(window.matchMedia("(max-width: 920px)").matches) {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width="770px";
@@ -424,11 +482,15 @@ const creationPlateauDemineur = (niveau) => {
             plateauDemineur.style.overflowY="scroll";
             bandeauSuperieur.style.width="770px";
             formDifficulte.style.width="770px";
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(770);
         } else {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width=`calc(${nombreColonnes} * 30px)`;
             bandeauSuperieur.style.width=`calc(${nombreColonnes} * 30px)`;
             formDifficulte.style.width=`calc(${nombreColonnes} * 30px)`;
+            //transfert au css de la position de l'émoticone perdu
+            leftEmoticonePerdu(nombreColonnes * 30);
         }
     }
    
@@ -483,7 +545,7 @@ const creationPlateauDemineur = (niveau) => {
                     }
                 }
                 //A SUPPRIMER APRES LES ESSAIS
-                caseLigCol.innerHTML=caseLigCol.value;
+                // caseLigCol.innerHTML=caseLigCol.value;
             }
         }
     }
@@ -593,7 +655,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                         cellule.style.border="1px solid lightgray";
                         cellule.dataset.class="active";
                         //A SUPPRIMER APRES TESTS
-                        cellule.style.color="gray";
+                        // cellule.style.color="gray";
 
                         afficherCellulesZeroMine(ligCell,colCell);
                         partieGagnee(niveau);
@@ -604,7 +666,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                         cellule.style.border="1px solid lightgray";
                         cellule.dataset.class="active";
                         //A SUPPRIMER APRES TESTS
-                        cellule.style.color="gray";
+                        // cellule.style.color="gray";
                         partieGagnee(niveau);
                     }
                 } else { //si la valeur est déjà affichée affiche les cases autour s'il n'y a pas de mine
@@ -665,7 +727,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                         cellule.style.border="1px solid lightgray";
                         cellule.dataset.class="active";
                         //A SUPPRIMER APRES TESTS
-                        cellule.style.color="gray";
+                        // cellule.style.color="gray";
 
                         afficherCellulesZeroMine(ligCell,colCell);
                         
@@ -675,7 +737,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                         cellule.style.border="1px solid lightgray";
                         cellule.dataset.class="active";
                         //A SUPPRIMER APRES TESTS
-                        cellule.style.color="gray";
+                        // cellule.style.color="gray";
                     }
                 } else { //si la valeur est déjà affichée affiche les cases autour s'il n'y a pas de mine
                     

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+
 :root{
     --sizeSudoku:100vw;
     --sizeCell:calc(var(--sizeSudoku)/9);
@@ -5,6 +7,12 @@
     --colorText:white;
     --fontSize:5vw;
     --fontSizeSudoku:8vw;
+    --largeurPopupFin: 0px; /* défini via js */
+    --windowHeight: 0px; /* défini via js */
+    --positionLeft:0px;/* défini via js */
+    --windowWidth:0px;/* défini via js */
+    --leftEmoticonePerdu:0px; /* défini via js */
+    
   }
   
   body{
@@ -77,19 +85,19 @@
 
   button[value="4"]{
     font-size: 1.2rem;
-    color: rgba(85, 20, 20, 0.179);
+    color: rgb(85, 20, 20);
     font-weight: bold;
   }
 
   button[value="5"]{
     font-size: 1.2rem;
-    color: rgba(60, 11, 64, 0.829);
+    color: rgb(60, 11, 64);
     font-weight: bold;
   }
 
   button[value="6"]{
     font-size: 1.2rem;
-    color: rgba(0, 255, 47, 0.125);
+    color: rgb(3, 81, 18);
     font-weight: bold;
   }
 
@@ -159,39 +167,6 @@
     justify-content: center;
 
   }
-  
-  .gagne {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      font-size: 2rem;
-      background: linear-gradient(to right, rgba(0,0,255,0.5) 0%, rgba(0,255,255,0.5) 10%, rgba(0,255,0,0.5) 45%,
-       rgba(255,255,0,0.5) 50%, rgba(255,165,0,0.5) 70%, rgba(255,0,0,0.5) 90%), 
-      linear-gradient(rgb(150, 225, 255) 52%, rgb(9, 10, 10) 60%, rgb(252, 209, 156) 61%);
-  
-      background-clip: text;
-    /*add this line, it defines how far the background should extend within an element, here we set it to text */
-    
-    -webkit-background-clip: text;
-    /* add this line, for browsers compatibility */
-  
-    -webkit-text-fill-color: transparent;
-    /* specifies the fill color of text characters. We use transparent to use the background value as our text fill */
-  
-    animation: wave 1500ms ease alternate infinite;
-    /* add this line */
-    transition: all 0.5s ease;
-    /* add this line */
-  }
-  
-  @keyframes wave {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 50vw 5vh;
-      }
-    }
   
     #temps, #temps2{
       /* font-family: 'Segment7Standard'; */
@@ -306,7 +281,7 @@
   #imagePerdu{
     width: 50px;
    position: absolute;
-   left: 151px;
+   left: var(--leftEmoticonePerdu);
    top: 151px;
    border-radius: 50%;
    animation: transformation 10s;
@@ -333,15 +308,14 @@
     position: absolute;
     font-size: 2.5rem;
     top: 30vh;
-    width: 95vw;
-    max-width: 550px;
-    left: 2.5vw;
+    width: var(--largeurPopupFin);
+    left: var(--positionLeft);
     z-index: 2;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 10px;
     backdrop-filter: blur(1.5px);
     -webkit-backdrop-filter: blur(1.5px);
-    animation: descente ease-out 1s;
+    animation: descente ease-out 2s;
   }
 
   @keyframes descente {
@@ -349,7 +323,7 @@
       transform: translateY(-40vh);
       }
       20%{
-        transform: translateY(0) scaleY(0.4);
+        transform: translateY(-5vh) scaleY(0.3);
       }
       50%{
         transform: translateY(0) scaleY(0.6);
@@ -377,6 +351,7 @@
   #texteGagne {
     text-align: center;
     color: red;
+    font-family: 'Carter One', cursive;
   }
 
 
