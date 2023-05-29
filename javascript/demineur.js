@@ -218,6 +218,54 @@ const partiePerdue = () => {
 }
 
 
+//fonction pour vérifier si la partie est gagnée et actions si partie gagnée
+const partieGagnee = (niveau) => {
+    //la partie est gagnée si toutes les cases avec chiffre sont actives
+    let compteurActive = 0;
+    const nbCaseChiffre = nbColonnes(niveau) * nbLigne(niveau) - nbMine(niveau);
+    for(let lig=0; lig<nbLigne(niveau);lig++){
+        for(let col=0; col<nbColonnes(niveau);col++){
+            let myCell=document.getElementById(`cel-l${lig}c${col}`);
+            if(myCell.dataset.class === "active" && myCell.dataset.mine !== "vrai"){
+                compteurActive++;
+            }
+        }
+    }
+
+    console.log("partie gagnee - compteurActive : ",compteurActive);
+    console.log("partie gagnee - nbCaseChiffre : ",nbCaseChiffre);
+
+    if(compteurActive === nbCaseChiffre){
+        //on commence par afficher les mines qui n'ont pas encore été affichées
+        for(let lig=0; lig<nbLigne(niveau);lig++){
+            for(let col=0; col<nbColonnes(niveau);col++){
+                let myCell=document.getElementById(`cel-l${lig}c${col}`);
+                if(myCell.value === "mine" && myCell.dataset.mine !== "vrai"){
+                    myCell.style.backgroundImage = 'url("../Images/positionMine.jpg")';
+                    myCell.dataset.mine = "vrai"
+                }
+                myCell.disabled=true;
+            }
+        }
+
+        //on affiche que la partie est gagnée
+        const divTexteGagne = document.createElement("div");
+        divTexteGagne.id = "divTexteGagne";
+        const texteGagne = document.createElement("p");
+        texteGagne.id = "texteGagne";
+        texteGagne.innerHTML = "Wonderful, you saved the world !"
+        divTexteGagne.appendChild(texteGagne);
+        const container = document.querySelector("main");
+        container.appendChild(divTexteGagne);
+
+        //on arrete le chrono
+        clearTimeout(time);
+        //on met le compteur de mine à 0
+        compteurPlateauDemineur.innerHTML = 0;
+    }
+
+
+}
 
 
 //---------------------------------------------------------
@@ -508,6 +556,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
              if(boutonUtilise==="mineFirst"){
                 if(cellule.dataset.class==="active" && cellule.dataset.mine==="faux"){
                     afficherCellulesZeroMine(ligCell,colCell);
+                    partieGagnee(niveau);
                 }
                 else if(cellule.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
                         if(cellule.dataset.mine != "vrai"){
@@ -531,6 +580,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
 
                 } else {
                     afficherCellulesZeroMine(ligCell,colCell);
+                    partieGagnee(niveau);
                 }
              } else if(boutonUtilise==="valeurFirst"){
                 if(cellule.dataset.class != "active"){ //si la cellule n'a pas encore été cliquée
@@ -546,6 +596,7 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                         cellule.style.color="gray";
 
                         afficherCellulesZeroMine(ligCell,colCell);
+                        partieGagnee(niveau);
                         
                     } else {
                         // console.log("valeur");
@@ -554,11 +605,13 @@ buttonMineFirst.addEventListener("focus", (event) =>{
                         cellule.dataset.class="active";
                         //A SUPPRIMER APRES TESTS
                         cellule.style.color="gray";
+                        partieGagnee(niveau);
                     }
                 } else { //si la valeur est déjà affichée affiche les cases autour s'il n'y a pas de mine
                     
 
                     afficherCellulesZeroMine(ligCell,colCell);
+                    partieGagnee(niveau);
                     // /////////////////////////////////////////////////////////////////
                 }
 
@@ -674,6 +727,11 @@ buttonNouvellePartie.addEventListener("click" , () => {
     temps=0;
     augmenterTemps();
 
+    //on efface le texte "vous avez gagné"
+    if(!!document.getElementById("divTexteGagne")){
+        const divTexteGagne = document.getElementById("divTexteGagne");
+        divTexteGagne.remove();
+    }
 
     //on remodifie l'image du bouton NouvellePartie
     buttonNouvellePartie.style.backgroundImage='url("../Images/emoticone-reflexion.png")';

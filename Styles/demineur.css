@@ -153,6 +153,7 @@
 
 
   main{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -326,6 +327,56 @@
     100%{
       transform: scale(5);
     }
+  }
+
+  #divTexteGagne {
+    position: absolute;
+    font-size: 2.5rem;
+    top: 30vh;
+    width: 95vw;
+    max-width: 550px;
+    left: 2.5vw;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    backdrop-filter: blur(1.5px);
+    -webkit-backdrop-filter: blur(1.5px);
+    animation: descente ease-out 1s;
+  }
+
+  @keyframes descente {
+    0%{
+      transform: translateY(-40vh);
+      }
+      20%{
+        transform: translateY(0) scaleY(0.4);
+      }
+      50%{
+        transform: translateY(0) scaleY(0.6);
+      }
+      60%{
+        transform: translateY(0) scaleY(1);
+      }
+      68%{
+        transform: translateY(0) scaleY(1.2);
+      }
+      75%{
+        transform: translateY(0) scaleY(0.85);
+      }
+      83%{
+        transform: translateY(0) scaleY(1.1);
+      }
+      90%{
+        transform: translateY(0) scaleY(0.95);
+      }
+      100%{
+        transform: translateY(0) scaleY(1);
+      }
+  }
+
+  #texteGagne {
+    text-align: center;
+    color: red;
   }
 
 
