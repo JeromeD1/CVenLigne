@@ -35,8 +35,10 @@ const root =document.documentElement;
 root.style.setProperty("--largeurPopupFin", setWidthPartieFinie(largeurWindow));
 root.style.setProperty("--positionLeft", setPositionLeft(largeurWindow));
 root.style.setProperty("--windowHeight", setWindowHeight());
-root.style.setProperty("--windowWidth", largeurWindow + "px"); 
-
+root.style.setProperty("--windowWidth", document.documentElement.clientWidth + "px"); 
+//document.documentElement renvoie à la racine de ma page, donc à l'élément HTML
+//document.documentElement.clientWidth permet de retourner la partie visible de cet élément HTML, donc la largeur de ma fenêtre
+//cette solution est préférable car window.innerWidth ne tient pas compte des bordures padding, scroll... donc peut renvoyer une mauvaise valeur
 
 //fonction qui calcule la position de l'émonicone moqueur quand la partie est perdue
 const leftEmoticonePerdu = (widthPlateauDemineur) => {
@@ -426,6 +428,8 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width=`calc(${nombreColonnes} * 40px)`;
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(nombreColonnes * 40);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", nombreColonnes * 40 + "px"); 
         }
         else {
             plateauDemineur.style.grid = `repeat(${nombreLignes},50px) / repeat(${nombreColonnes},50px)`;
@@ -435,6 +439,8 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width=`calc(${nombreColonnes} * 50px)`;
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(nombreColonnes * 50);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", nombreColonnes * 50 + "px");
         }
 
     } else if (niveau==="intermediaire"){
@@ -447,6 +453,9 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width="320px";
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(320);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", "320px");
+
         } else if(window.matchMedia("(min-width: 600px)").matches) {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width=`calc(${nombreLignes} * 30px)`;
@@ -454,6 +463,8 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width=`calc(${nombreLignes} * 30px)`;
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(nombreLignes * 30);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", nombreLignes * 30 + "px");
          } 
         
     } else {
@@ -466,6 +477,9 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width="320px";
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(320);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", "320px");
+
         } else if(window.matchMedia("(max-width: 800px)").matches) {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width="570px";
@@ -475,6 +489,9 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width="570px";
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(570);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", "570px");
+
         }  else if(window.matchMedia("(max-width: 920px)").matches) {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width="770px";
@@ -484,6 +501,9 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width="770px";
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(770);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", "770px");
+
         } else {
             plateauDemineur.style.grid = `repeat(${nombreLignes},30px) / repeat(${nombreColonnes},30px)`;
             plateauDemineur.style.width=`calc(${nombreColonnes} * 30px)`;
@@ -491,6 +511,8 @@ const creationPlateauDemineur = (niveau) => {
             formDifficulte.style.width=`calc(${nombreColonnes} * 30px)`;
             //transfert au css de la position de l'émoticone perdu
             leftEmoticonePerdu(nombreColonnes * 30);
+            //transfert au css de la largeur du démineur
+            root.style.setProperty("--demineurWidth", nombreColonnes * 30 + "px");
         }
     }
    
@@ -558,7 +580,46 @@ creationPlateauDemineur(niveau);
 console.log(plateauDemineur);
 //--------------------------------------------------------------------------------
 
+//------APPARITION DE FLECHES GAUCHE DROITE SI SCROLL POSSIBLE----------------
+const flecheGauche = document.querySelector(".fleche-gauche");
+const flecheDroite = document.querySelector(".fleche-droite");
+const flecheHaut = document.querySelector(".fleche-haut");
+const flecheBas = document.querySelector(".fleche-bas");
 
+function affichageFleches() {
+  if (plateauDemineur.scrollLeft > 0) {
+    flecheGauche.style.display = "block";
+  } else {
+    flecheGauche.style.display = "none";
+  }
+  if (plateauDemineur.scrollWidth - plateauDemineur.clientWidth > plateauDemineur.scrollLeft) {
+    flecheDroite.style.display = "block";
+  } else {
+    flecheDroite.style.display = "none";
+  }
+  if (plateauDemineur.scrollTop > 0) {
+    flecheHaut.style.display = "block";
+  } else {
+    flecheHaut.style.display = "none";
+  }
+  if (plateauDemineur.scrollHeight - plateauDemineur.clientHeight > plateauDemineur.scrollTop) {
+    flecheBas.style.display = "block";
+  } else {
+    flecheBas.style.display = "none";
+  }
+}
+
+//ajout d'un event listener au plateau demineur au scroll pour afficher ou masquer les fleches en fonction de la position du scroll
+plateauDemineur.addEventListener("scroll", affichageFleches);
+
+//affichage des fleches au chargement de la page
+affichageFleches();
+
+//renvoi de la position top du plateau démineur pour le placement des flèches
+const positionDemineur = plateauDemineur.getBoundingClientRect();
+root.style.setProperty("--topPositionDemineur", positionDemineur.top);
+
+//----------------------------------------------------------
 
 
 
@@ -835,5 +896,11 @@ buttonNouvellePartie.addEventListener("click" , () => {
         actionClickDroitCase(cellule);
         })
     })
+
+    //ajout d'un event listener au plateau demineur au scroll pour afficher ou masquer les fleches en fonction de la position du scroll
+    plateauDemineur.addEventListener("scroll", affichageFleches);
+
+    //affichage des fleches au chargement de la page
+    affichageFleches();
 
 })
