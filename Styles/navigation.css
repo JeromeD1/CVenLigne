@@ -1,0 +1,214 @@
+
+:root {
+    --hauteurNavbar:100px;
+    --largeurMenu:150px;
+    --fontSizeLien:1.1rem;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    /* box-shadow: 0 30px 50px rgba(114, 175, 250, 0.6); */
+    box-shadow: 0 20px 40px rgba(40, 40, 65, 0.95);
+    width: 100vw; 
+    height: var(--hauteurNavbar);
+    box-sizing: border-box;
+}
+
+nav::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: calc(10px + var(--hauteurNavbar));
+    box-sizing: border-box;
+    background-image: linear-gradient(to bottom, rgba(40,40,65,0) 30%, rgba(40, 40, 65, 0.9) 70%, rgba(40, 40, 65, 1));
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: -1;
+}
+
+.nav {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 100vw;
+    height: 100%;
+    padding: 0;
+    box-sizing: border-box;
+    justify-content: space-around;
+    align-items: center;
+    gap: 25px;
+}
+
+
+.menu {
+    width: var(--largeurMenu);
+    padding: 0;
+    display: block;
+    height: var(--hauteurNavbar);
+    line-height: var(--hauteurNavbar);
+    text-align: center;
+
+}
+
+.sousMenu {
+    display: none;
+    width: var(--largeurMenu);
+    padding: 0;
+    list-style-type:none;
+    
+}
+
+.sousMenu>li {
+    height: calc(0.5 * var(--hauteurNavbar));
+    line-height: calc(0.5 * var(--hauteurNavbar));
+}
+
+.lienMenu , .lienSousMenu {
+    text-decoration: none;
+    color: white;
+    font-size: var(--fontSizeLien);
+    
+}
+
+
+.menu:hover {
+    background: rgba(40, 40, 65, 0.3);   
+}
+
+.menu:hover .sousMenu {
+    display: block;
+    background: rgba(60, 60, 85, 0.4);
+    backdrop-filter: blur(10px);
+}
+
+.flecheMenu {
+    display: inline-block;
+    width: 15px;
+    height: 10px;
+    clip-path: polygon(50% 60%, 80% 0, 100% 0, 50% 100%, 0 0, 20% 0);
+    background-color: rgb(237,168,115) ;
+    transition: transform 0.8s;
+}
+
+.deroulant:hover .flecheMenu {
+    transform: rotate(180deg);
+    opacity: 0.5;
+}
+
+
+.imageBurger {
+    display: none;
+}
+
+@media screen and (max-width:850px) {
+    :root{
+        --hauteurNavbar:50px;
+    }
+
+    .burger {
+        position: absolute;
+        /* transform: translateX(-100%); */
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        top: calc(-var(--hauteurNavbar));
+        left: -100%;
+        background-color: rgba(40,40,65,0.5);
+        backdrop-filter: blur(10px);
+        padding-top: 15vh;
+        padding-bottom: 15vh;
+    }
+
+
+
+    .nav {
+        flex-direction: column;
+        height: 70vh;
+    }
+
+    .flecheMenu{
+        width: 10px;
+        height: 15px;
+        clip-path: polygon(100% 50%, 0 0, 0 20%, 60% 50% , 0 80% , 0 100%);
+    }
+
+    .deroulant {
+        position: relative;
+    }
+    .deroulant:hover .sousMenu {
+        position: absolute;
+        top: 0;
+        left: 100%;
+    }
+
+    .menu:hover{
+        background: rgba(60, 60, 85, 0.4);
+        backdrop-filter: blur(10px);
+    }
+
+    .sousMenu {
+        text-align: left;
+    }
+
+    .lienSousMenu{
+       
+            padding-left: 35px;
+        
+    }
+
+    .imageBurger {
+        display: block;
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        left: 80vw;
+        top: calc(0.5 * (var(--hauteurNavbar) - 40px));
+        z-index: 5;
+        cursor: pointer;
+        
+    }
+
+    .imageBurger:hover {
+        animation: vibration 0.1s 3;
+    }
+
+    @keyframes vibration {
+
+        0% {transform: translateY(0);}
+        25%{transform: translateY(5px);}
+        50% {transform: translateY(0);}
+        75%{transform: translateY(5px);}
+        100%{transform: translateY(0);}
+    
+        }
+
+        .mobile-menu {
+            display: block;
+            left: 0;
+            animation: apparition ease 0.5s;
+        }
+
+        @keyframes apparition {
+           from{transform: translateX(-100%);}
+           to{transform: translateX(0);} 
+        }
+
+        .header-mobile-menu {
+            display: none;
+        }
+}

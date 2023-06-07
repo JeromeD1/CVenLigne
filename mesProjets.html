@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jerome Desouches - Démineur</title>
+    <title>Jerome Desouches - Développeur Web</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!--Pour que les @media fonctionnent avec tous les smartphones -->
     <link rel="styleSheet" href="Styles/style.css" />
-    <link rel="styleSheet" href="Styles/demineur.css" />
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org//face/segment7" type="text/css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&family=Manrope&family=Tilt+Prism&display=swap" rel="stylesheet">
+    <link rel="styleSheet" href="Styles/index.css" />
     <link rel="styleSheet" href="Styles/navigation.css" />
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
     <script type="module" src="./javascript/navigation.js"></script>
-    <script type="module" src="javascript/demineur.js"></script>
+    
    
 </head>
 
 <body>
+    <header>
+        <div class="ligne1">
+            <div class="logos">
+                <a  target="_blank" href="https://www.linkedin.com/in/j%C3%A9r%C3%B4me-desouches-a7bb85104?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bgdcv7TdVR8me%2BmJRVwhudA%3D%3D" 
+                class="lienContainerPhoto"><img src="Images/logo-linkedin.png" 
+                alt="logo-linkedin" title="Retrouvez moi sur Linkedin"></a>
+                <a href="" class="lienContainerPhoto">
+                    <img src="Images/logo-facebook.png" alt="logo-facebook">
+                    <img src="Images/croix.png" class="logoHover" alt="croix" title="Pas de compte Facebook à consulter. C'est là pour faire joli !">
+                </a>
+                <a href="" class="lienContainerPhoto">
+                    <img src="Images/logo-twitter.png" alt="logo-twitter">
+                    <img src="Images/croix.png" class="logoHover" alt="croix" title="Pas de compte Twitter non plus, désolé !">
+                </a>
+                <a href="" class="lienContainerPhoto">
+                    <img src="Images/logo-instagram.png" alt="logo-instagram">
+                    <img src="Images/croix.png" class="logoHover" alt="croix"  title="Décidément les réseaux sociaux ce n'est pas mon truc !">
+                </a>
+            </div>
+
+
+            <div class="infoContact">
+                <p>&#x2706; | 06 16 71 74 40</p>
+                <p>&#x1F4E7; : jerome.desouches@hotmail.com</p>
+            </div>
+        </div>
+        <div class="moi">
+            <p id="monNom">Jérôme Desouches</p>
+            <p id="monMetier">Développeur web</p>
+        </div>  
+        
+    </header>
 
     <nav>
         <video id="background-video" autoplay loop muted poster="Images/vague2.png"><source src="Videos/vague2.mp4" type="video/mp4"></video>
@@ -52,57 +81,16 @@
     </nav>
 
     <main>
-        
-        <form>
-            <fieldset class="form">
-                <legend>Difficulté</legend>
-                <div>
-                    <input type="radio" name="niveau" value="facile" id="radioFacile" >
-                    <label for="radioFacile">Facile</label>
-                </div>
-                <div>
-                    <input type="radio" name="niveau" value="intermediaire" id="radioMoyen" checked>
-                    <label for="radioMoyen">Moyen</label>
-                </div>
-                <div>
-                    <input type="radio" name="niveau" value="difficile" id="radioDifficile">
-                    <label for="radioDifficile">Difficile</label>
-                </div>
-            </fieldset>
-        </form>
 
-
-        <section id="bandeauSuperieur">
-            <div id="compteurMine">99</div>
-            <button id="buttonNouvellePartie"></button>
-            <div id="tempsEcoule">00:00</div>
+        <section>
+            <a href="./ProjetLabo/html/home.html" ><h2>Le Labo</h2></a>  
+            <p>Premier projet à la Wild Code School, le but du site est de présenter une clinique spécialisée dans la transformation corporelle. <br>
+            Le potentiel client découvre la clinique, son histoire, ses chirurgiens et leurs spécialité, et peut faire une demande de vevis via 
+        un formulaire de contact.</p>
+            <a href="./ProjetLabo/html/home.html" ><img src="./Images/Le-Labo.jpg" alt="Image de présentation du Labo" /></a>
         </section>
-
-        <section id="demineur">
-            <!-- défini dans le script demineur.js -->
-        </section>
-
-        <section id="choix-utilisateur">
-            <div>
-                <button id="mineFirst"></button>
-                <button id="valeurFirst"></button>
-            </div>
-        </section>
-
-        <!-- ajout de fleches qui apparaitront si le scroll est possible dans le demineur -->
-        <div class="fleche-gauche"></div>
-        <div class="fleche-droite"></div>
-        <!-- <div class="fleche-haut"></div>
-        <div class="fleche-bas"></div> -->
 
     </main>
-
-        <!-- <div id="container-test">
-            <img src="Images/emoticone-moqueur.gif" id="img">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam natus veritatis magni corporis? Quod, delectus. Pariatur at dolores porro distinctio inventore consequuntur similique excepturi laudantium sit, facere eligendi provident delectus.</p>
-            <br>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae explicabo facere aspernatur. Repellendus totam at sequi ipsum, dicta accusantium eveniet tenetur voluptatibus quae nulla maiores ea assumenda molestiae recusandae a?</p>
-        </div> -->
 
     <footer>
         <div class="lastInfo">

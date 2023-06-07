@@ -6,16 +6,18 @@
     <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0"> Pour que les @media fonctionnent avec tous les smartphones -->
     <link rel="styleSheet" href="Styles/style.css" />
     <link rel="styleSheet" href="Styles/contact.css" />
+    <link rel="styleSheet" href="Styles/navigation.css" />
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
+    <script type="module" src="./javascript/navigation.js"></script>
     <!-- -----pour le captcha--------- -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content=
         "width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Styles/captcha.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
         crossorigin="anonymous">
-    <script src="javascript/captcha.js"></script>
+    <script src="javascript/captcha.js"></script> -->
     <!-- --------------------------- -->
 </head>
 
@@ -55,19 +57,35 @@
 
     <nav>
         <video id="background-video" autoplay loop muted poster="Images/vague2.png"><source src="Videos/vague2.mp4" type="video/mp4"></video>
-            <ul class="nav">
-                <li class="menu"><a href="index.html">Développement web</a></li>
-                <li class="menu"><a href="background.html">Mes expériences</a></li>
-                <li class="menu deroulant">
-                    <a href="mesJeux.html">Mes jeux &ensp;</a>
-                        <ul class="sousMenu">
-                            <li><a href="sudoku.html">Sudoku</a></li>
-                            <li><a href="demineur.html">Démineur</a></li>
-                        </ul>
-                </li>
-                <li class="menu"><a href="contact.php">Contact</a></li>
-            </ul>
-
+            <div class="burger">
+                <ul class="nav">
+                    <li class="menu"><a class="lienMenu" href="index.html">Développement web</a></li>
+                    <li class="menu"><a class="lienMenu" href="background.html">Mes expériences</a></li>
+                    <li class="menu deroulant">
+                        <div class="containerDeroulant">
+                            <a class="lienMenu" href="mesJeux.html">Mes jeux &nbsp;</a>
+                            <div class="flecheMenu"></div>
+                        </div>
+                            <ul class="sousMenu">
+                                <li class="liSousMenu"><a class="lienSousMenu" href="sudoku.html">Sudoku</a></li>
+                                <li><a class="lienSousMenu" href="demineur.html">Démineur</a></li>
+                            </ul>
+                    </li>
+                    <li class="menu deroulant">
+                        <div class="containerDeroulant">
+                            <a class="lienMenu" href="mesProjets.html">Mes projets &nbsp;</a>
+                            <div class="flecheMenu"></div>
+                        </div>
+                            <ul class="sousMenu">
+                                <li class="liSousMenu"><a class="lienSousMenu" target="_blank" href="./ProjetLabo/html/home.html">Le Labo</a></li>
+                                <li><a class="lienSousMenu" target="_blank" href="#">Hackaton n°1</a></li>
+                                <li><a class="lienSousMenu" target="_blank" href="#">Projet n°2</a></li>
+                            </ul>
+                    </li>
+                    <li class="menu"><a class="lienMenu" href="contact.php">Contact</a></li>
+                </ul>
+            </div>
+            <img src="./Images/menu-burger.png" alt="icone menu hamburger" class="imageBurger"/>
     </nav>
 
     <main>

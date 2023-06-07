@@ -1,6 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: rgb(40,40,65);
-    margin: 8px;
+
 }
 
 header {
@@ -8,8 +13,9 @@ header {
     background-image: url("../Images/oceanSoir.png");
     /* background-size:cover; */
     background-size: 100vw 100vh ;
-    
-    
+    margin-left: auto;
+    margin-right: auto;
+    width: 100vw;
     background-position: left 0 bottom 56vh;
     padding-top: 5px;
     
@@ -88,98 +94,7 @@ header p {
     margin-top: 0;
 }
 
-nav {
-    position: sticky;
-    top: 0;
-    z-index: 4;
-    box-shadow: 0 30px 50px rgba(114, 175, 250, 0.6);
 
-    width: 100%;
-    
-}
-
-ul.nav {
-    /* padding: 0 20% 0 20%; */
-    display: flex;
-    /* width: 100%; */
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    margin-bottom: 0;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
-    /* border: 1px solid red; */
-}
-
-ul.nav li {
-    list-style: none;
-    
-}
-
-ul.nav li.menu {
-    height: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 150px;
-}
-
-li.menu ul {
-    float: none;
-    width: 100%;
-    margin-left: 0;
-    
-}
-
-li.menu ul li {
-    float: none;
-    width: 100%;
-    margin-left: -20px;
-    left: 0;
-
-}
-
-ul.nav li:hover {
-    background: rgba(40, 40, 65, 0.3);
-    }
-
-#background-video {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-    /* overflow: hidden; */
-    z-index: -1;
-}
-
-
-nav a {
-    display: block;
-    
-    text-align: center;
-    
-    text-decoration: none;
-    /* border-top: 1px solid gold; */
-    color: white;
-    font-size: 1.1em;
-}
-
-.sousMenu{
-    display: none;
-}
-
-
-
-li:hover > .sousMenu {
-    display: block;
-    z-index: 1;
-}
 
 .lienContainerPhoto {
     position: relative;
@@ -340,7 +255,7 @@ footer {
         margin-top: 3px;
     }
 
-    nav ul.nav {
+    /* nav ul.nav {
         flex-direction: column;
         gap: 5px;
         padding-top: 5px;
@@ -353,13 +268,17 @@ footer {
        align-items: center;
     }
 
+    .deroulant{
+        position: relative;
+    }
+
     ul.nav li.deroulant:hover {
         min-height: 2.5rem;
     }
 
     ul.nav li.deroulant:hover a {
         min-width: 70px;
-    }
+    } */
 }
 
 @media screen and (max-width: 990px) {

@@ -583,8 +583,8 @@ console.log(plateauDemineur);
 //------APPARITION DE FLECHES GAUCHE DROITE SI SCROLL POSSIBLE----------------
 const flecheGauche = document.querySelector(".fleche-gauche");
 const flecheDroite = document.querySelector(".fleche-droite");
-const flecheHaut = document.querySelector(".fleche-haut");
-const flecheBas = document.querySelector(".fleche-bas");
+// const flecheHaut = document.querySelector(".fleche-haut");
+// const flecheBas = document.querySelector(".fleche-bas");
 
 function affichageFleches() {
   if (plateauDemineur.scrollLeft > 0) {
@@ -597,16 +597,16 @@ function affichageFleches() {
   } else {
     flecheDroite.style.display = "none";
   }
-  if (plateauDemineur.scrollTop > 0) {
-    flecheHaut.style.display = "block";
-  } else {
-    flecheHaut.style.display = "none";
-  }
-  if (plateauDemineur.scrollHeight - plateauDemineur.clientHeight > plateauDemineur.scrollTop) {
-    flecheBas.style.display = "block";
-  } else {
-    flecheBas.style.display = "none";
-  }
+//   if (plateauDemineur.scrollTop > 0) {
+//     flecheHaut.style.display = "block";
+//   } else {
+//     flecheHaut.style.display = "none";
+//   }
+//   if (plateauDemineur.scrollHeight - plateauDemineur.clientHeight > plateauDemineur.scrollTop) {
+//     flecheBas.style.display = "block";
+//   } else {
+//     flecheBas.style.display = "none";
+//   }
 }
 
 //ajout d'un event listener au plateau demineur au scroll pour afficher ou masquer les fleches en fonction de la position du scroll
