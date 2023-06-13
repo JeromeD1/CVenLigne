@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">   <!--Pour que les @media fonctionnent avec tous les smartphones -->
     <link rel="styleSheet" href="Styles/style.css" />
-    <link rel="styleSheet" href="Styles/index.css" />
+    <link rel="styleSheet" href="Styles/mesProjets.css" />
     <link rel="styleSheet" href="Styles/navigation.css" />
     <link rel="shortcut icon" href="Images/favicon.ico" type="image/x-icon">
     <script type="module" src="./javascript/navigation.js"></script>
@@ -20,6 +20,9 @@
                 <a  target="_blank" href="https://www.linkedin.com/in/j%C3%A9r%C3%B4me-desouches-a7bb85104?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bgdcv7TdVR8me%2BmJRVwhudA%3D%3D" 
                 class="lienContainerPhoto"><img src="Images/logo-linkedin.png" 
                 alt="logo-linkedin" title="Retrouvez moi sur Linkedin"></a>
+                <a  target="_blank" href="https://github.com/JeromeD1" 
+                class="lienContainerPhoto"><img src="./Images/logo-github.png" 
+                alt="logo-gitHub" title="Retrouvez moi sur Github"></a>
                 <a href="" class="lienContainerPhoto">
                     <img src="Images/logo-facebook.png" alt="logo-facebook">
                     <img src="Images/croix.png" class="logoHover" alt="croix" title="Pas de compte Facebook à consulter. C'est là pour faire joli !">
@@ -82,12 +85,23 @@
 
     <main>
 
-        <section>
+        <section id="projetLabo" class="sectionProjet">
             <a href="./ProjetLabo/html/home.html" ><h2>Le Labo</h2></a>  
             <p>Premier projet à la Wild Code School, le but du site est de présenter une clinique spécialisée dans la transformation corporelle. <br>
-            Le potentiel client découvre la clinique, son histoire, ses chirurgiens et leurs spécialité, et peut faire une demande de vevis via 
+            Le potentiel client découvre la clinique, son histoire, ses chirurgiens et leurs spécialité, et peut faire une demande de devis via 
         un formulaire de contact.</p>
-            <a href="./ProjetLabo/html/home.html" ><img src="./Images/Le-Labo.jpg" alt="Image de présentation du Labo" /></a>
+            <div>
+                <a href="./ProjetLabo/html/home.html" ><img id="imgLabo" src="./Images/Le-Labo.jpg" alt="Image de présentation du Labo" /></a>
+            </div>
+        </section>
+
+        <section id="starMatch" class="sectionProjet">
+            <a href="#" ><h2>Star MATCH</h2></a>  
+            <p>Hackaton de 28h après une semaine d'aprentissage sur Reat sur le thème de l'amour dans Star Wars. <br>
+                Naturellement le site devient un site de rencontre ! (A découvrir bientôt...)</p>
+            <div>
+                <a href="#" ><img src="./Images/starmatch.png" alt="Image de présentation de Starmatch" /></a>
+            </div>
         </section>
 
     </main>
