@@ -3,7 +3,7 @@
 <head>
     <title>Contact | Jerome Desouches - Développeur Web</title>
     <meta charset="utf-8"/>
-    <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0"> Pour que les @media fonctionnent avec tous les smartphones -->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="styleSheet" href="Styles/style.css" />
     <link rel="styleSheet" href="Styles/contact.css" />
     <link rel="styleSheet" href="Styles/navigation.css" />
